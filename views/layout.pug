@@ -1,7 +1,35 @@
-doctype html
-html
-  head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-  body
-    block content
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(href='https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap', rel='stylesheet')
+        link(href='https://fonts.googleapis.com/css2?family=Madimi+One&family=Roboto+Condensed:wght@700&display=swap', rel='stylesheet')
+        title=pageTitle
+        block css_files
+            link(rel="stylesheet", href="./stylesheets/Header.css")
+        block js_files
+    body
+        header.header
+          .logo-container
+          p Mega Shopper
+          .mid
+              ul.navbar
+                li
+                  a#homeLink(href='../homepage/HomePage.html') Home
+                li
+                  a#shopLink(href='../shop/Shop.html') Shop
+                li
+                  a#aboutLink(href='../aboutUs/AboutUs.html') About Us
+                li
+                  a#contactLink(href='../contact/Contact.html') Contact
+                li
+                  a#loginLink(href='../login/login.html') Login
+                li
+                  a#signupLink(href='../signUp/signup.html') SignUp
+                li
+                  a#adminLink(href='../Admin-Dashboard/admin.html') Admin
+                li
+                  a#cartLink(href='../cart/cart.html') Cart
+        block main_content
+
+          

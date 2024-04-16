@@ -5,17 +5,10 @@ const { msSQL, sqlCon } = require("../db.config");
 
 
 exports.signUpRender = asyncHandler(async function (req, res, next) {
-    // res.send("Hello Sign Up Page");
-    // res.contentType("image/png");
-    // res.setHeader("Content-Disposition",'inline;');
-    // res.set("Content-Type", "text/html");
+
     res.status(200).render('signUp')
 })
 
-//
-//`INSERT INTO Users (UserID,FirstName,LastName,EmailAddress,Password)
-                // VALUES
-                // (4,${req.body.first_name},${req.body.last_name},${req.body.last_name},${req.body.email},${req.body.password})`
 
 exports.signUpUser = asyncHandler(async function (req, res, next) {
     console.log(req.body.email);
@@ -32,10 +25,7 @@ exports.signUpUser = asyncHandler(async function (req, res, next) {
 
     })
     res.send('Hello from Post');
-    // sqlCon.then(async pool => {
-    //     let queryResult = pool.request()
-    //         .query(`INSERT INTO USERS VALUES(4,${req.params.first_name})`)
-    // })
+
 })
 
 

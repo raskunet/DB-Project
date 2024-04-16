@@ -1,0 +1,57 @@
+
+
+#home {
+    background-image: url('/images/home/Gaming\ pc.jpg');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    height:100vh;   
+}
+
+.overlay-text {
+    font-family: "Madimi One", sans-serif;
+    z-index: 1; 
+}
+
+
+.overlay-text h1
+{
+    position: absolute;
+    top: 50%; 
+    left: 3%; 
+    color: greenyellow;
+    font-weight: bold;
+    font-size: 40px; 
+} 
+.overlay-text div
+{
+    position: absolute;
+    top: 60%;
+    left: 3%; 
+    color: white;
+    font-size: 25px; 
+}
+.overlay-text div:nth-of-type(2)
+{
+    top: 70%;
+    font-size: 20px; 
+}
+
+.overlay-text button {
+    position: absolute;
+    top: 75%;
+    left: 3%;
+    padding: 10px 20px;
+    background-color:greenyellow;
+    color:black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+}
+.overlay-text button:hover 
+{
+    background-color: darkolivegreen;
+    /* transform: translateY(-2px);  */
+    transition:ease-out;
+    padding: 12px 22px;
+} 

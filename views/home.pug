@@ -1,18 +1,19 @@
-html(lang="en")
-    head
-        meta(charset="UTF-8")
-        meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        title HomePage
-    body 
-    div
-      ul
-        li
-            a(href="/home/shop") Shop
-        li
-            a(href="/home/login") Login
-        li
-            a(href="home/signUp") SignUp
-        li
-            a(href="/home/Contact") Contact
-        li
-            a(href="/home") Home
+
+
+extends layout.pug
+
+append css_files
+    link(rel="stylesheet", href="./stylesheets/homepage.css")
+
+block main_content 
+    section#home
+      .overlay-text
+        h1 Unleash Your PC&apos;s Potential
+        div
+          | Explore a Vast Selection of Quality Computer Parts.
+        div
+          | Shop now and save upto 20% off on your favourite items
+        button(onclick="window.location.href='/home/shop' ") Shop Now
+    footer
+      div
+        | Empty Footer For testing
