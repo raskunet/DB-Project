@@ -11,7 +11,6 @@ exports.signUpRender = asyncHandler(async function (req, res, next) {
 
 
 exports.signUpUser = asyncHandler(async function (req, res, next) {
-    console.log(req.body.email);
     sqlCon.then(async pool => {
         let result = await pool
             .request()

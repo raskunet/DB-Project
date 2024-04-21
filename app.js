@@ -9,7 +9,10 @@ var usersRouter = require('./routes/users');
 let homeRouter = require('./routes/home');
 let signUpRouter = require('./routes/signUp');
 let loginRouter = require('./routes/login');
-
+let aboutUsRouter = require('./routes/aboutUs');
+let contactRouter = require("./routes/contact");
+let adminRouter = require("./routes/admin");
+let shopRouter = require("./routes/shop");
 var app = express();
 
 // view engine setup
@@ -20,13 +23,18 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname,'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
+// All routers initialization with corresponding paths/urls
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/home', homeRouter);
 app.use('/signUp', signUpRouter);
 app.use('/login', loginRouter);
+app.use('/aboutUs', aboutUsRouter);
+app.use('/contact', contactRouter);
+app.use("/admin", adminRouter);
+app.use("/shop", shopRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
