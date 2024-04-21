@@ -9,13 +9,20 @@ exports.adminRender = asyncHandler(async function (req, res, next) {
 });
 
 exports.getAllUsers = asyncHandler(async function (req, res, next) {
-  res.render("users");
+  res.render("users", {
+    pageTitle:'Admin | Users'
+  })
 })
 
 exports.getAllProducts = asyncHandler(async function (req, res, next) {
-  res.render("products")
+  res.render("products", {
+    pageTitle:'Admin | Products'
+  })
 })
 
 exports.getAllOrders = asyncHandler(async function (req, res, next) {
-  res.render("orders")
+  res.render("orders", {
+    pageTitle:'Admin | Orders'
+  })
 })
+

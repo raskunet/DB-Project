@@ -6,133 +6,133 @@ html(lang="en")
         link(href='https://fonts.googleapis.com/css2?family=Madimi+One&family=Roboto+Condensed:wght@700&display=swap', rel='stylesheet')
         title=pageTitle
         block admin_css
-        link(rel="stylesheet", href="./stylesheets/admin.css")
+          link(rel="stylesheet", href="/stylesheets/admin.css")
         block admin_js
     body
       .container
         .sidebar
           .dashboard-title
-            img(style='height:55px;width:50px', src='./images/Admin//view-dashboard.png', alt='dasboard-image')
+            img(style='height:55px;width:50px', src='/images/Admin/view-dashboard.png', alt='dasboard-image')
             h2(style='display:inline-block') Dashboard
           .manage-site
             ul
               .icon-align-1
-                img.icon-style(src='./images/Admin//home.png', alt='home-image')
+                img.icon-style(src='/images/Admin/home.png', alt='home-image')
                 p(style='display:inline-block')
                   a(href='#') Home
               .icon-align-1
-                img.icon-style(src='./images/Admin//account-box.png', alt='')
+                img.icon-style(src='/images/Admin/account-box.png', alt='')
                 li(style='display:inline-block')
                   a(href='#') Profile
               .icon-align-1
-                img.icon-style(src='./images/Admin//message.png', alt='')
+                img.icon-style(src='/images/Admin/message.png', alt='')
                 li(style='display:inline-block')
                   a(href='#') Messages
               .icon-align-1
-                img.icon-style(src='./images/Admin//history.png', alt='')
+                img.icon-style(src='/images/Admin/history.png', alt='')
                 li(style='display:inline-block')
                   a(href='#') History
               .icon-align-1
-                img.icon-style(src='./images/Admin//files.png', alt='')
+                img.icon-style(src='/images/Admin/files.png', alt='')
                 li(style='display:inline-block')
                   a(href='#') Tasks
           .admin-setting
             ul
               .icon-align-1
-                img.icon-style(src='./images/Admin//settings.png', alt='')
+                img.icon-style(src='/images/Admin/settings.png', alt='')
                 li(style='display:inline-block')
                   a(href='#') Settings
               .icon-align-1
-                img.icon-style(src='./images/Admin//shield.png', alt='')
+                img.icon-style(src='/images/Admin/shield.png', alt='')
                 li(style='display:inline-block')
                   a(href='#') Privacy
               .icon-align-1
-                img.icon-style(src='./images/Admin//support.png', alt='')
+                img.icon-style(src='/images/Admin/support.png', alt='')
                 li(style='display:inline-block')
                   a(href='#') Support
-        block admin-main-content
-        .admin-panel
-          .header
-            img.admin-profile-img(src='#', alt='random')
-            ul
-              li exampleName
-              li exampleID
-              li Item 3
-          .admin-misc-panel
-            h3 Quick Settings
-            .at-glance
-              .card
-                .icon-align-2
-                  img.icon-style(src='./images/Admin//account-multiple.png')
-                  h4(style='display:inline-block') Users
-                p 
-                 a(href="/admin/users") Manage User Accounts 
-                hr
-                p
-                  | Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio
-              .card
-                .icon-align-2
-                  img.icon-style(src='./images/Admin//package.png')
-                  h4(style='display:inline-block') Products
-                p 
-                  a(href="/admin/products") Manage Products
-                hr
-                p
-                  | Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-              .card
-                .icon-align-2
-                  img.icon-style(src='./images/Admin//package.png')
-                  h4(style='display:inline-block') Orders
-                p 
-                   a(href="/admin/orders") Manage Orders
-                hr
-                p
-                  | Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-              .card
-                .icon-align-2
-                  img.icon-style(src='./images/Admin//stats.png')
-                  h4(style='display:inline-block') Statistics
-                p 
-                  a(href="/admin/statistics") View Statistics 
-                hr
-                p
-                  | Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam
-          .admin-anncm-container
-            h3 Announcements
-            .admin-announcements
+        block admin_main_content
+          .admin-panel
+            .header
+              img.admin-profile-img(src='#', alt='random')
               ul
-                li
-                  h3 Announcement 1
-                  p
-                    | Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    | Accusamus illo magnam reiciendis temporibus vero impedit,
-                    | voluptas aliquid repellat eligendi enim id, quod eum maxime
-                    | repudiandae vitae sint incidunt, saepe expedita?
+                li exampleName 
+                li exampleID
+                li Item 3
+            .admin-misc-panel
+              h3 Quick Settings
+              .at-glance
+                .card
+                  .icon-align-2
+                    img.icon-style(src='/images/Admin/account-multiple.png')
+                    h4(style='display:inline-block') Users
+                  p 
+                   a(href="/admin/users") Manage User Accounts 
                   hr
-                li
-                  h3 Announcement 2
                   p
-                    | Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    | Consectetur sapiente odit quas sequi aliquam numquam
-                    | corporis voluptatum. Dignissimos, dolores amet, tenetur
-                    | ipsam perspiciatis assumenda nesciunt rerum expedita, quia
-                    | repellendus ratione!
-                hr
-                li
-                  h3 Announcement 3
+                    | Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio
+                .card
+                  .icon-align-2
+                    img.icon-style(src='/images/Admin/package.png')
+                    h4(style='display:inline-block') Products
+                  p 
+                    a(href="/admin/products") Manage Products
+                  hr
                   p
-                    | Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    | Itaque ipsam voluptatum illo consequatur sequi inventore
-                    | voluptatem, laudantium voluptates reiciendis eos amet
-                    | provident tempora? Reiciendis at odio officia odit enim
-                    | esse.
-                hr
-                li
-                  h3 Announcement 4
+                    | Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                .card
+                  .icon-align-2
+                    img.icon-style(src='/images/Admin/package.png')
+                    h4(style='display:inline-block') Orders
+                  p 
+                     a(href="/admin/orders") Manage Orders
+                  hr
                   p
-                    | Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    | Cumque asperiores mollitia minus dolorum, sed
-                    | necessitatibus inventore possimus. Totam nemo commodi
-                    | veritatis tenetur blanditiis repudiandae? Quisquam
-                    | sapiente labore eos voluptatem architecto?
-                hr
+                    | Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                .card
+                  .icon-align-2
+                    img.icon-style(src='/images/Admin/stats.png')
+                    h4(style='display:inline-block') Statistics
+                  p 
+                    a(href="/admin/statistics") View Statistics 
+                  hr
+                  p
+                    | Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam
+            .admin-anncm-container
+              h3 Announcements
+              .admin-announcements
+                ul
+                  li
+                    h3 Announcement 1
+                    p
+                      | Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      | Accusamus illo magnam reiciendis temporibus vero impedit,
+                      | voluptas aliquid repellat eligendi enim id, quod eum maxime
+                      | repudiandae vitae sint incidunt, saepe expedita?
+                    hr
+                  li
+                    h3 Announcement 2
+                    p
+                      | Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      | Consectetur sapiente odit quas sequi aliquam numquam
+                      | corporis voluptatum. Dignissimos, dolores amet, tenetur
+                      | ipsam perspiciatis assumenda nesciunt rerum expedita, quia
+                      | repellendus ratione!
+                  hr
+                  li
+                    h3 Announcement 3
+                    p
+                      | Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      | Itaque ipsam voluptatum illo consequatur sequi inventore
+                      | voluptatem, laudantium voluptates reiciendis eos amet
+                      | provident tempora? Reiciendis at odio officia odit enim
+                      | esse.
+                  hr
+                  li
+                    h3 Announcement 4
+                    p
+                      | Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      | Cumque asperiores mollitia minus dolorum, sed
+                      | necessitatibus inventore possimus. Totam nemo commodi
+                      | veritatis tenetur blanditiis repudiandae? Quisquam
+                      | sapiente labore eos voluptatem architecto?
+                  hr
