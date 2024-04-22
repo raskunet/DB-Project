@@ -3,8 +3,8 @@
 const msSQL = require("mssql");
 
 const config = {
-    user: "raskunet",
-    password: "msserver123",
+    user: "sa",
+    password: "12345678a",
     server: "localhost", // You can use 'localhost\\instance' to connect to named instance
     database: "webData",
     trustServerCertificate: true,
@@ -23,8 +23,8 @@ async function pool() {
 }
 
 let sqlCon = pool();
-// connect.then(async query => {
-//     let result = await query.query('SELECT * FROM Orders;')
+// sqlCon.then(async query => {
+//     let result = await query.query('SELECT * From Users;')
 //     console.log(result);
 // })
 
