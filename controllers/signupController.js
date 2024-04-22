@@ -19,7 +19,7 @@ exports.signUpUser = asyncHandler(async function (req, res, next) {
             .input('email', msSQL.NVarChar(25), req.body.email)
             .input('password',msSQL.NVarChar(25),req.body.password)
           .query(
-              `INSERT INTO Users(UserID,FirstName,LastName,EmailAddress,Password) values(7,@first_name,@last_name,@email,@password)`
+              `INSERT INTO Users(firstName,lastName,emailAddress,userType,userPassword) values(@first_name,@last_name,@email,3,@password)`
         );
 
     })

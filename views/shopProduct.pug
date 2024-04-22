@@ -1,0 +1,12 @@
+extends layout.pug 
+
+
+block main_content
+    p This is from Shop
+    ul
+    each val in productList ? productList :['There are no products']
+        li 
+            //- a(href="https://product/"+#{val.productID})  
+            p #{val.productDescription}
+            p #{val.Price}
+            p #{val.noOfItems}

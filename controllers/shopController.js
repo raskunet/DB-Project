@@ -3,7 +3,17 @@ const { msSQL, sqlCon } = require("../db.config");
 
 
 exports.shopRender = asyncHandler(async function (req, res, next) {
-    res.render("shop", {
-        pageTitle:'Shop',
-    })
+    // res.redirect('/shop/product');
+    sqlCon.then(async (pool) => {
+        let queryResult = await pool.query("Select * from Products");
+        console.log(queryResult.recordset[0]);
+      res.render("shopProduct", {
+        pageTitle: "Shop | Products",
+        productList: queryResult.recordset,
+      });
+    });
 })
+
+// exports.productRender = asyncHandler(async function (req, res, next) {
+    
+// })
