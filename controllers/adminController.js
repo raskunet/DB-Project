@@ -29,3 +29,15 @@ exports.getAllOrders = asyncHandler(async function (req, res, next) {
 exports.insertUser = asyncHandler(async function (req, res, next) {
   res.render("userInsert");
 })
+
+exports.searchUser = asyncHandler(async function (req, res, next) {
+  res.render("userSearch", {
+    pageTitle: 'Admin | Search Users'
+  });
+})
+
+exports.insertUser = asyncHandler(async function (req, res, next) {
+  res.render("userInsert", {
+    pageTitle:'Admin | Insert User'
+  })
+})
