@@ -8,8 +8,8 @@ exports.adminRender = asyncHandler(async function (req, res, next) {
     });
 });
 
-exports.getAllUsers = asyncHandler(async function (req, res, next) {
-  res.render("users", {
+exports.usersManage = asyncHandler(async function (req, res, next) {
+  res.render("usersManage", {
     pageTitle:'Admin | Users'
   })
 })
@@ -26,3 +26,6 @@ exports.getAllOrders = asyncHandler(async function (req, res, next) {
   })
 })
 
+exports.insertUser = asyncHandler(async function (req, res, next) {
+  res.render("userInsert");
+})

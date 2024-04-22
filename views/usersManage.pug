@@ -1,0 +1,16 @@
+extends admin.pug 
+
+append admin_css 
+    link(rel="stylesheet", href="/stylesheets/usersManage.css")
+
+block admin_main_content 
+    .manage_Users 
+        h3 Manage User Accounts
+        .search_users.manage_user_container
+            h4 Search, update and delete users from Database
+            button
+                a(href="/admin/user/searchUser") Search Users
+        .insert_users.manage_user_container
+            h4 Insert New Users in Database
+            button 
+                a(href="/admin/user/insertUser") Insert User  
