@@ -9,8 +9,9 @@
     padding :10px 10px;
     align-items: center;
     justify-content: space-between;
-    width:700px;
-    margin:5px 10px;
+    gap :20px;
+    width:800px;
+    margin:10px 10px;
     background-color:#89909f;
     border-radius: 5px;
 }
