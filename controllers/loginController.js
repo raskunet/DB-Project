@@ -3,13 +3,16 @@ const { msSQL, sqlCon } = require("../db.config");
 
 
 exports.loginRender = asyncHandler(async function (req, res, next) {
-  res.render("login");
+  res.render("login", {
+    pageTitle:'Login'
+  });
 });
 
 
 exports.loginUser = asyncHandler(async function (req, res, next) {
-    // This is for testing ONLY for NOW
-    res.send('Hello from Post Function').setTimeout(1000, () => {
+  // This is for testing ONLY for NOW
+  console.log(req.body);
+    res.send('Hello from post function').setTimeout(1000, () => {
         res.redirect("/");
     })
 })

@@ -11,8 +11,8 @@ router.get("/products", adminController.getAllProducts);
 
 router.get("/orders", adminController.getAllOrders);
 
-router.get("/user/searchUser", adminController.searchUser);
+router.get("/userManage/searchUser", adminController.searchUser);
 
-router.get("/user/insertUser", adminController.insertUser);
+router.get("/userManage/insertUser", adminController.insertUser);
 
 module.exports = router;
