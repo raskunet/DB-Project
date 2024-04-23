@@ -6,12 +6,11 @@ body {
 
  .header {
     font-family: 'Roboto Condensed', sans-serif;;
-    padding-top: 5px;
+    padding-bottom: 20px;
     display: flex;
 }
 
 .navbar a {
-    
     color: black;
     text-decoration: none;
     padding: 25px 25px;
