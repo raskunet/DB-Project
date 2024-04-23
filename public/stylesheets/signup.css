@@ -6,10 +6,10 @@
 }
 
 :root {
-    --image-container-width:400px;
-    --image-container-height:800px;
-    --signUp-container-width:800px;
-    --signUp-container-height:800px;
+    --image-container-width:350px;
+    --image-container-height:600px;
+    --signUp-container-width:700px;
+    --signUp-container-height:600px;
     --container-border-radius:20px;
 }
 
@@ -28,10 +28,10 @@ body {
 
     display: flex;
     width: calc(var(--image-container-width) + var(--signUp-container-width));   
-    height: 800px;
+    height: 600px;
     margin-left: auto;
     margin-right: auto;
-    margin-top:70px;
+    margin-top:30px;
 
 }
 
@@ -92,8 +92,9 @@ body {
     font-size: 1.25rem;
     font-weight: bold;
     margin: auto;
-    width: 700px;
-    height: 35%;
+    width: var(--signUp-container-width);
+    height: 100px;
+    border-radius: inherit;
 }
 
 .form-section1{
@@ -102,21 +103,20 @@ body {
 
 .signUp-form{
     flex:2;
-    height: 75%;
+    height:200px;
 }
 
 .signUp-Form-container {
-    flex:1;
-    height: 30%;
+    height: 250px;
     padding-top: 1rem;
-    padding-bottom: 2rem;
+    padding-bottom: 10px;
     
 }
 
 .signUp-Form-container,
 .signUp-submit-container{
     width: var(--signUp-container-width); 
-    padding-left: 5rem;
+    padding-left:40px;
 }
 
 
