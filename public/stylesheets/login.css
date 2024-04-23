@@ -6,10 +6,10 @@
 }
 
 :root {
-    --image-container-width:400px;
-    --image-container-height:800px;
-    --signUp-container-width:800px;
-    --signUp-container-height:800px;
+    --image-container-width:350px;
+    --image-container-height:600px;
+    --login-container-width:700px;
+    --login-container-height:600px;
     --container-border-radius:20px;
 }
 
@@ -25,14 +25,12 @@ body {
 }
 
 .main-container {
-
     display: flex;
-    width: calc(var(--image-container-width) + var(--signUp-container-width));   
-    height: 800px;
+    width: calc(var(--image-container-width) + var(--login-container-width));   
+    height: 600px;
     margin-left: auto;
     margin-right: auto;
-    margin-top:70px;
-
+    margin-top:30px;
 }
 
 .image-container {
@@ -74,11 +72,11 @@ body {
     height: calc(var(--image-container-height) / 8);
 }
 
-.signUp-container {
+.login-container {
     background-color: #e9eaeb;
     display: table-cell;
-    width:var(--signUp-container-width);
-    height:var(--signUp-container-height);
+    width:var(--login-container-width);
+    height:var(--login-container-height);
     display: flex;
     flex-direction: column;
     align-content: space-around;
@@ -88,46 +86,44 @@ body {
 }
 
 
-.signUp-Header-text {
+.login-Header-text {
     font-size: 1.25rem;
     font-weight: bold;
-    margin: auto;
-    width: 700px;
-    height: 35%;
+    width: var(--login-container-width);
+    height: 25%;
 }
 
 .form-section1{
     background-color: #ffffff; 
 }
 
-.signUp-form{
+.login-form{
     flex:2;
     height: 75%;
 }
 
-.signUp-Form-container {
+.login-Form-container {
     flex:1;
-    height: 30%;
+    height: 200px;
     padding-top: 1rem;
-    padding-bottom: 2rem;
-    
+    padding-bottom: 2rem;   
 }
 
-.signUp-Form-container,
-.signUp-submit-container{
-    width: var(--signUp-container-width); 
-    padding-left: 5rem;
+.login-Form-container,
+.login-submit-container{
+    width: var(--login-container-width); 
+    padding-left: 40px;
     margin-bottom: 3rem;
 }
 
 
 .form-section-2,
-.signUp-Header-text {
+.login-Header-text {
     background-color: #e9eaeb;
 }
 
 
-.signUp-Form-container{
+.login-Form-container{
     display: flex;
     flex-wrap: wrap;
     gap:2rem;
