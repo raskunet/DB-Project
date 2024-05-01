@@ -1,35 +1,47 @@
 html(lang="en")
-    head
-        meta(charset="UTF-8")
-        meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        link(href='https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap', rel='stylesheet')
-        link(href='https://fonts.googleapis.com/css2?family=Madimi+One&family=Roboto+Condensed:wght@700&display=swap', rel='stylesheet')
-        title=pageTitle
-        block css_files
-            link(rel="stylesheet", href="./stylesheets/Header.css")
-        block js_files
-    body
-        header.header
-          .logo-container
-          p Mega Shopper
-          .mid
-              ul.navbar
-                li
-                  a#homeLink(href='/home') Home
-                li
-                  a#shopLink(href='/home/shop') Shop
-                li
-                  a#aboutLink(href='/home/aboutUs') About Us
-                li
-                  a#contactLink(href='/home/contact') Contact
-                li
-                  a#loginLink(href='/home/login') Login
-                li
-                  a#signupLink(href='/home/signUp') SignUp
-                li
-                  a#adminLink(href='/home/admin') Admin
-                li
-                  a#cartLink(href='/home/cart') Cart
-        block main_content
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(href='https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap', rel='stylesheet')
+    link(href='https://fonts.googleapis.com/css2?family=Madimi+One&family=Roboto+Condensed:wght@700&display=swap', rel='stylesheet')
+    title=pageTitle
+    block css_files
+      link(rel="stylesheet", href="./stylesheets/Header.css")
+    block js_files
+  body
+    header.header
+      .logo-container
+        img(src='/images/header/Designer.jpeg', alt='')
+      .mid
+        ul.navbar
+          li
+            a#homeLink(href='/home') Home
+          li
+            a#shopLink(href='/home/shop') Shop
+          li
+            a#aboutLink(href='/home/aboutUs') About Us
+          li
+            a#contactLink(href='/home/contact') Contact
+          li
+            a#loginLink(href='/home/login') Login
+          li
+            a#signupLink(href='/home/signUp') SignUp
+          li
+            a#adminLink(href='/home/admin') Admin
+          li
+            a#cartLink(href='/home/cart') Cart
+  block main_content
 
-          
+
+
+
+
+
+
+
+
+
+
+
+
+

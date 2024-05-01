@@ -1,7 +1,6 @@
+
+
 use webData;
-use master
-drop DATABASE webData;
-create DATABASE webData
 
 create table Users(
     userID int NOT NULL IDENTITY (1,1),
@@ -28,7 +27,6 @@ create table Category(
     categoryName nvarchar(30)
 );
 
-drop TABLE Products;
 create table Products(
     productID int primary key IDENTITY (1,1),
     categoryID int foreign key references Category(categoryID),
