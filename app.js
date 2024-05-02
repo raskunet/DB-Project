@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var session = require("express-session");
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -24,6 +25,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '/public')));
+app.use(session({
+  resave: false,
+  saveUninitialized: false,
+  secret:'Testkey'
+}))
 
 // All routers initialization with corresponding paths/urls
 app.use('/', indexRouter);
@@ -50,6 +56,18 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+app.use(function (req, res, next) {
+  var err = req.session.error;
+  var msg = req.session.success;
+  delete req.session.error;
+  delete req.session.success;
+  res.locals.message = "";
+  if (err) res.locals.message = '<p class="msg error">' + err + "</p>";
+  if (msg) res.locals.message = '<p class="msg success">' + msg + "</p>";
+  next();
+});
+
 
 app.set({
   "Content-Type": "text/html",
