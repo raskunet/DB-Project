@@ -3,25 +3,32 @@ extends admin.pug
 append admin_css 
     link(rel="stylesheet", href="/stylesheets/users.css")
 
+append admin_js 
+    script(src="/javascripts/getUser.js",defer)
+
 block admin_main_content
     .search_users
-        form.search_users_form(method='GET')
+        form.search_users_form(method='POST' action="/admin/user/getUser")
             .search-input-container
                 label(for="search_users") 
-                    h4 Search Users By Id or Name
-                input#search(type="search", name="search_users", required)
+                    h4 Search Users By Id
+                input#search(type="search", name="search_users", required, value="")
                 br
                 span#search_users_input_err
             span(style='display:inline-block')
-                button.search_submit-btn(type='submit') Search
+                button#search_submit_btn(type='submit') Search
 
         .search_users_results
             h3 Users
             ul.search_results
-                li.search_list_item
-                    .search_res
-                        .user_basic_info
-                            p userID: 1234
-                            p userName : exampleName1234
-                        button.user_detail_btn view details
+                if searchList
+                    each val in searchList
+                        li.search_list_item
+                            .search_res
+                                .user_basic_info
+                                    p UserID : #{val.userID}
+                                    p UserName : #{val.firstName+val.lastName}
+                                a.user_detail_btn view details
+                else 
+                    p(style='padding:10px 10px;color:red;') Nothing to Show
                 

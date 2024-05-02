@@ -23,7 +23,7 @@ input#search {
     height:580px;
 }
 
-.search_submit-btn {
+#search_submit_btn {
     padding: 10px 10px;
     color:#d4d4d8;;
     color:black;
@@ -41,12 +41,14 @@ input#search {
     border-radius: 5px;
 }
 .user_detail_btn{
-    padding: 3px 5px;
+    padding: 10px 5px;
     font-size: 15px;
     border-radius: 5px;
     font-weight: bold;
     color:black;
     cursor: pointer;
+    background-color: white;
+    border:2px solid black;
 }
 
 

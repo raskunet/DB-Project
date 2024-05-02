@@ -41,3 +41,22 @@ exports.insertUser = asyncHandler(async function (req, res, next) {
     pageTitle:'Admin | Insert User'
   })
 })
+
+exports.getUser = asyncHandler(async function (req, res, next) {
+  let userId = req.body.search_users;
+  sqlCon.then(async pool => {
+    try {
+      let result = await pool.request()
+        .input('userId', msSQL.Int, userId)
+        .query('SELECT * FROM Users WHERE userId=@userID');
+      result = JSON.parse(JSON.stringify(result.recordset));
+      console.log(result);
+      res.render("userSearch", {
+        pageTitle: 'Admin | Search User',
+        searchList:result
+      })
+    } catch (err) {
+      console.log(err);
+    }
+  })
+});
