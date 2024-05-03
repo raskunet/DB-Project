@@ -28,7 +28,8 @@ app.use(express.static(path.join(__dirname, '/public')));
 app.use(session({
   resave: false,
   saveUninitialized: false,
-  secret:'Testkey'
+  secret: 'Testkey',
+  
 }))
 
 // All routers initialization with corresponding paths/urls

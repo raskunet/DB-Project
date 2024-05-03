@@ -7,7 +7,9 @@ let router = express.Router();
 
 //  herre /home is /
 
-
+router.get('/*', function (req, res, next) {
+    
+})
 
 router.get("/", function (req, res, next) {
     res.render("home");
