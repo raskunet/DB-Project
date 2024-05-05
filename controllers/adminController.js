@@ -80,5 +80,38 @@ exports.getUserDetails = asyncHandler(async function (req, res, next) {
       next();
     }
   })
+})
 
+exports.updateUser = asyncHandler(async function (req, res, next) {
+  console.log("In update User");
+  let userID = req.params.userID;
+  sqlCon.then(async pool => {
+    try {
+      pool.request()
+        .input('firstName', msSQL.NVarChar(30), req.body.firstName)
+        .input('lastName', msSQL.NVarChar(30), req.body.lastName)
+        .input('email', msSQL.NVarChar(40), req.body.email)
+        .input('userType', msSQL.Int, req.body.userType)
+        .input('password', msSQL.NVarChar(30), req.body.password)
+        .input('userID', msSQL.Int, userID)
+        .query(
+          "Update Users " +
+          "SET firstName=@firstName, lastName=@lastName, emailAddress=@email, userType=@userType, userPassword=@password " +
+          "WHERE userID=@userID"
+        );
+      let result = await pool.request()
+        .input('userID', msSQL.Int, userID)
+        .query('SELECT * FROM Users WHERE userID=@userID');
+      result = JSON.parse(JSON.stringify(result.recordset));
+      console.log(result);
+      res.render("userSearchResult", {
+        pageTitle: 'Admin | User Data',
+        updateUser:true,
+        userFound: true,
+        userData: result[0],
+      })
+    } catch (err) {
+      console.log(err);
+    }
+  })
 })

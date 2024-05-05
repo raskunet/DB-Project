@@ -10,7 +10,7 @@ block admin_main_content
     if userFound
       section#searchUserResultContainer
         h2(style="margin-left:40px;margin-top:5px") Insert User
-        form.searched_user_form(action="", method="POST")
+        form.searched_user_form(method="POST")
             .info_name.input_flex
                 .first_name_container
                     label(for="firstName") First Name
@@ -42,8 +42,10 @@ block admin_main_content
                       |  Show Password
             section.form_seaction_2 
                 .updateUser_submit_container 
-                    button.updateUser(type="submit", name="update_user") Update User 
+                    button.updateUser(type="submit", name="update_user", formaction="/admin/user/getUser/"+userData.userID+"/updateUser") Update User 
                     span#insertUser_error
                 .deleteUser_submit_container 
-                    button.deleteUser(type="submit", name="delete_user") Delete User 
+                    button.deleteUser(type="submit", name="delete_user" , formaction="/admin/user/getUser/"+userData.userID+"/deleteUser") Delete User 
                     span#insertUser_error
+        if updateUser
+          p(style='color:red;padding-left:40px;') User Updated Successfully

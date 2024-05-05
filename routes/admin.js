@@ -19,4 +19,8 @@ router.post("/user/getUser", adminController.getUser);
 
 router.get("/user/getUser/:userID", adminController.getUserDetails);
 
+router.post("/user/getUser/:userID/updateUser", adminController.updateUser);
+
+// router.get("/user/getUser/:userID/deleteUser", adminController.deleteUser);
+
 module.exports = router;
