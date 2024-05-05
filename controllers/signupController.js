@@ -5,8 +5,10 @@ const { msSQL, sqlCon } = require("../db.config");
 
 
 exports.signUpRender = asyncHandler(async function (req, res, next) {
-
-    res.status(200).render('signUp')
+    res.render('signUp', {
+        pageTitle: "Signup",
+        user: req.user,
+    })
 })
 
 
@@ -21,10 +23,8 @@ exports.signUpUser = asyncHandler(async function (req, res, next) {
           .query(
               `INSERT INTO Users(firstName,lastName,emailAddress,userType,userPassword) values(@first_name,@last_name,@email,3,@password)`
         );
-
     })
     res.send('Hello from Post');
-
 })
 
 
