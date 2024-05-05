@@ -3,16 +3,22 @@ extends layout.pug
 append css_files
     link(rel="stylesheet", href="/stylesheets/shopProduct.css")
 
+append css_files
+    script(src="/javascripts/shopjava.js")
+
 block main_content
     section#shop
         #search-container
             input#search-input(type='text', placeholder='Search...')
             #filter-options
                 select#category-select(name='category')
-                    option(value='computers') Computers
-                    option(value='gaming-chairs') Gaming Chairs
-                    // Add more categories as needed
+                    if !selectedCategory
+                        option(disabled selected) Select Categories
+                    each category in categories
+                        option(value=category.categoryID)= category.categoryName
                 select#Sorting(name='Sort')
+                    if !selectedSort
+                        option(disabled selected) Sort by
                     option(value='low') Price Low to High
                     option(value='high') Price High to Low
                     option(value='bestreviews') Reviews High to Low
@@ -20,9 +26,9 @@ block main_content
                 button#filter-button Apply Filters
 
         each product in products
-            .card
+            .card(data-category=product.categoryID) 
                 img(src=product.imagepath, alt='', style='width:100%')
                 h1.name= product.productName
                 p.price= `$${product.price}`
                 p.description= product.description
-                button(type='button', onclick=`addToCart(${product.id})`) Add to Cart
+                button(type='button', onclick=`addToCart(${product.productID})`) Add to Cart
