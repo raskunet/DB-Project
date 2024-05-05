@@ -20,19 +20,38 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+const authFunc = (req, res, next) => {
+  console.log("req.session : ", req.session);
+  if (req.session.userID) {
+    req.user = req.session.userID;
+    req.session.isLogged = true;
+  } 
+  next();
+}
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '/public')));
-app.use(session({
-  resave: false,
-  saveUninitialized: false,
-  secret: 'Testkey',
-  
-}))
+app.use(
+  session({
+    resave: false,
+    saveUninitialized: false,
+    secret: "testkey",
+    name: "LoginSession",
+    cookie: {
+      // max Age : 1000 * (hrs * 3600 + minutes * 60  + seconds) milliseconds
+      maxAge: 1000 * (24 * 3600 + 0 * 60 + 0), // 24 hr for now
+      secure: false,
+      path: "/",
+      sameSite: false,
+    },
+  })
+);
 
 // All routers initialization with corresponding paths/urls
+app.all('*',authFunc);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/home', homeRouter);
@@ -73,8 +92,5 @@ app.use(function (req, res, next) {
 app.set({
   "Content-Type": "text/html",
 });
-// express.static.mime.define({
-//   'image/png':['png'],
-// })
 
 module.exports = app;
