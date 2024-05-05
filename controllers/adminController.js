@@ -60,3 +60,25 @@ exports.getUser = asyncHandler(async function (req, res, next) {
     }
   })
 });
+
+exports.getUserDetails = asyncHandler(async function (req, res, next) {
+  let userID = req.params.userID;
+  sqlCon.then(async pool => {
+    try {
+      let result = await pool.request()
+        .input('userID', msSQL.Int, userID)
+        .query('SELECT * FROM Users WHERE userID=@userID');
+      result = JSON.parse(JSON.stringify(result.recordset));
+      console.log(result);
+      res.render("userSearchResult", {
+        pageTitle:'Admin | User Data',
+        userFound: true,
+        userData: result[0],
+      })
+    } catch (err) {
+      console.log(err);
+      next();
+    }
+  })
+
+})

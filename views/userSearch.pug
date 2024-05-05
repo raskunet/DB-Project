@@ -28,7 +28,7 @@ block admin_main_content
                                 .user_basic_info
                                     p UserID : #{val.userID}
                                     p UserName : #{val.firstName+val.lastName}
-                                a.user_detail_btn view details
+                                a.user_detail_btn(href="/admin/user/getUser/"+val.userID) view details
                 else 
                     p(style='padding:10px 10px;color:red;') Nothing to Show
                 

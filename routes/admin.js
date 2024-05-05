@@ -17,4 +17,6 @@ router.get("/userManage/insertUser", adminController.insertUser);
 
 router.post("/user/getUser", adminController.getUser);
 
+router.get("/user/getUser/:userID", adminController.getUserDetails);
+
 module.exports = router;
