@@ -64,8 +64,9 @@ body {
 }
 
 .name {
-    color: white;
+    color: white; /* Change text color to black or another contrasting color */
 }
+
 
 .card {
     background-color: yellowgreen;

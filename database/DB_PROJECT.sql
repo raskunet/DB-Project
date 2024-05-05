@@ -1,5 +1,6 @@
-
-
+use master
+drop database webData
+create database WebData
 use webData;
 
 create table Users(
@@ -27,12 +28,12 @@ create table Category(
     categoryName nvarchar(30)
 );
 
-create table Products(
+CREATE TABLE Products (
     productID int primary key IDENTITY (1,1),
-    categoryID int foreign key references Category(categoryID),
-    Price int,
-    productDescription nvarchar(100),
-    noOfItems int
+    productName nvarchar(100) not null,
+    price decimal(10, 2) not null,
+    description nvarchar(255),
+    imageFileName nvarchar(100) not null
 );
 
 
@@ -78,3 +79,6 @@ create table WishList(
     primary key(productID,userID)
 );
 
+ALTER TABLE Orders
+ADD userID int,
+FOREIGN KEY (userID) REFERENCES Users(userID);

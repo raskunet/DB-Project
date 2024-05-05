@@ -19,92 +19,10 @@ block main_content
                     option(value='worstreviews') Reviews Low to High
                 button#filter-button Apply Filters
 
-        // Product 1
-        .card
-            img(src='/images/products/PC.jpg', alt='', style='width:100%')
-            h1.name Ultra Gamer's Delight
-            p.price $999.99
-            p.description
-                | Experience the pinnacle of gaming performance with the latest i7 13th gen processor, 32GB RAM, and a
-                | lightning-fast 1TB SSD.
-            button Add to Cart
-
-        .card
-            img(src='/images/products/gamingchair.jpeg', alt='', style='width:100%')
-            h1.name Ergo-Elite Gaming Chair
-            p.price $699.99
-            p.description
-                | Elevate your gaming experience with the ultimate comfort and support of the Secretlab gaming chair.
-            button Add to Cart
-
-        .card
-            img(src='/images/products/keyboard.jpg', alt='', style='width:100%')
-            h1.name HyperStrike Mechanical Keyboard
-            p.price $199.99
-            p.description
-                | Dominate every keystroke with the precision and speed of the ASUS KJoy fully mechanical keyboard with
-                | Cherry switches.
-            button Add to Cart
-
-        .card
-            img(src='/images/products/mobo.jpg', alt='', style='width:100%')
-            h1.name ROG Strix Supreme Motherboard
-            p.price $699.99
-            p.description
-                | Unleash the power of the latest technology with the cutting-edge ROG motherboard, designed for ultimate
-                | performance.
-            button Add to Cart
-
-        .card
-            img(src='/images/products/pcpack.jpeg', alt='', style='width:100%')
-            h1.name Titanic Performance Pack
-            p.price $1299.99
-            p.description
-                | Conquer any task with ease using the TREX Pack featuring an i9 13th gen processor and a massive 2TB SSD
-                | storage.
-            button Add to Cart
-
-        .card
-            img(src='/images/products/gpu.jpg', alt='', style='width:100%')
-            h1.name Titanium Edition RTX 4070TI
-            p.price $899.99
-            p.description
-                | Immerse yourself in breathtaking visuals with the ASUS RTX 4070TI, delivering unparalleled graphics
-                | performance.
-            button Add to Cart
-
-        .card
-            img(src='/images/products/mouse.jpeg', alt='', style='width:100%')
-            h1.name Silent Fury Gaming Mouse
-            p.price $699.99
-            p.description
-                | Achieve precision and silence with the Razor K25 gaming mouse, designed for competitive gaming with
-                | whisper-quiet clicks.
-            button Add to Cart
-
-        .card
-            img(src='/images/products/case.jpg', alt='', style='width:100%')
-            h1.name Neon Horizon RGB Case
-            p.price $699.99
-            p.description
-                | Showcase your build in style with the FNF Case featuring vibrant RGB lighting and superior airflow for
-                | optimal performance.
-            button Add to Cart
-
-        .card
-            img(src='/images/products/pcpack3.jpg', alt='', style='width:100%')
-            h1.name Ultimate Dual Monitor Setup
-            p.price $1999.99
-            p.description
-                | Transform your workspace into a productivity powerhouse with the Razor Pack, including dual 4K monitors
-                | and an i9 13th gen processor.
-            button Add to Cart
-
-        .card
-            img(src='/images/products/pcpack4.jpeg', alt='', style='width:100%')
-            h1.name Mystic Beast PC
-            p.price $699.99
-            p.description
-                | Unleash the power of the Mystic Beast, featuring top-of-the-line components for unbeatable performance
-                | in gaming and productivity tasks.
-            button Add to Cart
+        each product in products
+            .card
+                img(src=product.imagepath, alt='', style='width:100%')
+                h1.name= product.productName
+                p.price= `$${product.price}`
+                p.description= product.description
+                button(type='button', onclick=`addToCart(${product.id})`) Add to Cart
