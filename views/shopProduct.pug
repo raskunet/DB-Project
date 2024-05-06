@@ -9,22 +9,20 @@ append css_files
 block main_content
     section#shop
         #search-container
-            input#search-input(type='text', placeholder='Search...')
+            input#search-input(type='text', placeholder='Search...', oninput='searchProducts(this.value)')
             #filter-options
                 select#category-select(name='category')
                     if !selectedCategory
                         option(disabled selected) Select Categories
                     each category in categories
                         option(value=category.categoryID)= category.categoryName
-                select#Sorting(name='Sort')
+                select#Sorting(name='Sort', onchange='sortProducts(this.value)')
                     if !selectedSort
                         option(disabled selected) Sort by
                     option(value='low') Price Low to High
                     option(value='high') Price High to Low
                     option(value='bestreviews') Reviews High to Low
                     option(value='worstreviews') Reviews Low to High
-                button#filter-button Apply Filters
-
         each product in products
             .card(data-category=product.categoryID) 
                 img(src=product.imagepath, alt='', style='width:100%')

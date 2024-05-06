@@ -29,3 +29,32 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+// Wait for the DOM to be fully loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Get references to the search input and all product cards
+    const searchInput = document.getElementById('search-input');
+    const cards = document.querySelectorAll('.card');
+
+    // Function to filter products based on search input
+    function searchProducts(searchTerm) {
+        // Convert the search term to lowercase for case-insensitive search
+        const searchQuery = searchTerm.toLowerCase();
+
+        // Loop through all product cards and hide/show based on the search term
+        cards.forEach(card => {
+            const productName = card.querySelector('.name').innerText.toLowerCase();
+            if (productName.includes(searchQuery)) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+
+    // Add event listener to the search input
+    searchInput.addEventListener('input', function(event) {
+        const searchTerm = event.target.value.trim(); // Trim whitespace from the search term
+        searchProducts(searchTerm);
+    });
+});
+
