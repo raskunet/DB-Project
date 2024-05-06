@@ -3,12 +3,13 @@ drop database webData
 create database webData
 use webData;
 
+drop table Users
 create table Users(
     userID int NOT NULL IDENTITY (1,1),
     firstName nvarchar(30) NOT NULL,
     lastName nvarchar(30),
-    emailAddress nvarchar(40) not null,
-    userType int,
+    emailAddress nvarchar(40) not null UNIQUE,
+    userType int NOT NULL,
     userPassword nvarchar(30) not null,
     primary key (userID)
 );
