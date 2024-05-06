@@ -7,7 +7,9 @@ append admin_js
     script(src="/javascripts/userSearchRes.js" defer) 
 
 block admin_main_content
-    if userFound
+    if userDelete 
+      p(style='color:red;padding-left:40px;') User Deleted Successfully
+    else if userFound
       section#searchUserResultContainer
         h2(style="margin-left:40px;margin-top:5px") Insert User
         form.searched_user_form(method="POST")
@@ -45,7 +47,7 @@ block admin_main_content
                     button.updateUser(type="submit", name="update_user", formaction="/admin/user/getUser/"+userData.userID+"/updateUser") Update User 
                     span#insertUser_error
                 .deleteUser_submit_container 
-                    button.deleteUser(type="submit", name="delete_user" , formaction="/admin/user/getUser/"+userData.userID+"/deleteUser") Delete User 
+                    button.deleteUser(type="submit", name="delete_user", formaction="/admin/user/getUser/"+userData.userID+"/deleteUser") Delete User 
                     span#insertUser_error
         if updateUser
           p(style='color:red;padding-left:40px;') User Updated Successfully

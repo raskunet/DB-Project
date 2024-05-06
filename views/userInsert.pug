@@ -3,10 +3,16 @@ extends admin.pug
 append admin_css 
     link(rel="stylesheet", href="/stylesheets/userInsert.css")
 
+append admin_js
+    script(src="/javascripts/userSearchRes.js" defer) 
+
 block admin_main_content
-    section#insertUserContainer
+    if userInsert 
+      p(style='color:red;padding-left:40px;') User Inserted Successfully
+    else 
+      section#insertUserContainer
         h2(style="margin-left:40px;margin-top:5px") Insert User
-        form.insert_user_form(action="POST")
+        form.insert_user_form(action="/admin/userManage/insertUser", method='POST')
             .info_name.input_flex
                 .first_name_container
                     label(for="firstName") First Name
@@ -15,7 +21,7 @@ block admin_main_content
                 .last_name_container 
                     label(for="lastName") Last Name
                     br
-                    input#first_name(type="text", name="lastName")
+                    input#last_name(type="text", name="lastName")
             .info-misc.input_flex
                 .info_contact
                     .email_container
@@ -32,6 +38,9 @@ block admin_main_content
                     label(for="password") Password
                     br
                     input#userPassword(type="password", name="password")
+                    p
+                      input#show_password(type="checkbox", name="showPassword" value="Show Password") 
+                      |  Show Password
                 .cfm_password_container
                     label(for="cfm-password") Confirm Password
                     br

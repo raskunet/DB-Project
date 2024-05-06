@@ -27,7 +27,27 @@ exports.getAllOrders = asyncHandler(async function (req, res, next) {
 })
 
 exports.insertUser = asyncHandler(async function (req, res, next) {
-  res.render("userInsert");
+  sqlCon.then(async pool => {
+    try {
+      pool.request()
+        .input('firstName', msSQL.NVarChar(30), req.body.firstName)
+        .input('lastName', msSQL.NVarChar(30), req.body.lastName)
+        .input('email', msSQL.NVarChar(40), req.body.email)
+        .input('userType', msSQL.Int, req.body.userType)
+        .input('password', msSQL.NVarChar(30), req.body.password)
+        .query(
+          'INSERT INTO Users(firstName,lastName,emailAddress,userType,userPassword) ' +
+          'values (@firstName,@lastName,@email,@userType,@password) '
+      )
+      res.render("userInsert", {
+        pageTitle: "Admin | Insert User",
+        userInsert:true,
+      });
+      
+    } catch (err) {
+      
+    }
+  })
 })
 
 exports.searchUser = asyncHandler(async function (req, res, next) {
@@ -36,7 +56,7 @@ exports.searchUser = asyncHandler(async function (req, res, next) {
   });
 })
 
-exports.insertUser = asyncHandler(async function (req, res, next) {
+exports.insertUserPage = asyncHandler(async function (req, res, next) {
   res.render("userInsert", {
     pageTitle:'Admin | Insert User'
   })
@@ -112,6 +132,34 @@ exports.updateUser = asyncHandler(async function (req, res, next) {
       })
     } catch (err) {
       console.log(err);
+    }
+  })
+})
+
+exports.deleteUser = asyncHandler(async function (req, res, next) {
+  let userID = req.params.userID;
+  sqlCon.then(async pool => {
+    try {
+      pool.request()
+        .input('userID', msSQL.Int, userID)
+        .query('Delete FROM Users WHERE userID=@userID');
+      
+      let result = await pool
+        .request()
+        .input("userID", msSQL.Int, userID)
+        .query("SELECT * FROM Users WHERE userID=@userID");
+      result = JSON.parse(JSON.stringify(result.recordset));
+      console.log(result);
+      res.render("userSearchResult", {
+        pageTitle: "Admin | User Data",
+        userDelete:true,
+        updateUser: false,
+        userFound: false,
+        userData: result[0],
+      });
+      
+    } catch (err) {
+      
     }
   })
 })
