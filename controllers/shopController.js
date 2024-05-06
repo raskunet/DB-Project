@@ -4,7 +4,7 @@ exports.renderShopProduct = async function (req, res, next) {
     try {
         // Query the database to fetch products
         const pool = await sqlCon;
-        const productsResult = await pool.request().query('SELECT * FROM Products');
+        const productsResult = await pool.request().query('SELECT * FROM Products order by price');
 
         // Query the database to fetch categories
         const categoriesResult = await pool.request().query('SELECT * FROM Category');
