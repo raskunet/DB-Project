@@ -51,7 +51,6 @@
 .overlay-text button:hover 
 {
     background-color: darkolivegreen;
-    /* transform: translateY(-2px);  */
     transition:ease-out;
     padding: 12px 22px;
 } 

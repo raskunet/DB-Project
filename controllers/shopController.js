@@ -1,18 +1,23 @@
-const asyncHandler = require("express-async-handler");
 const { msSQL, sqlCon } = require("../db.config");
 
+exports.renderShopProduct = async function (req, res, next) {
+    try {
+        // Query the database to fetch products
+        const pool = await sqlCon;
+        const productsResult = await pool.request().query('SELECT * FROM Products');
 
-exports.shopRender = asyncHandler(async function (req, res, next) {
-  sqlCon.then(async (pool) => {
-    let queryResult = await pool.query("Select * from Products");
-    res.render("shopProduct", {
-      pageTitle: "Shop | Products",
-      user: req.user,
-      productList: queryResult.recordset,
-    });
-  });
-})
+        // Query the database to fetch categories
+        const categoriesResult = await pool.request().query('SELECT * FROM Category');
 
-// exports.productRender = asyncHandler(async function (req, res, next) {
-    
-// })
+        // Extract products and categories from the results
+        const products = productsResult.recordset;
+        const categories = categoriesResult.recordset;
+
+        // Render the shopProduct page and pass products and categories data to the template
+        res.render('shopProduct', { products, categories });
+    } catch (error) {
+        console.error("Error fetching products or categories:", error);
+        // Handle errors appropriately
+        res.status(500).send('Internal Server Error');
+    }
+};

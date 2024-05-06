@@ -1,6 +1,6 @@
 body {
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
 }
 
 
@@ -8,6 +8,8 @@ body {
     font-family: 'Roboto Condensed', sans-serif;;
     padding-bottom: 20px;
     display: flex;
+    background-color: white;
+    justify-content: space-around;
 }
 
 .navbar a {
@@ -17,38 +19,28 @@ body {
     font-size: 20px;
 }
 
-
 .navbar li a:hover,
 .navbar li a.active {
     text-decoration: underline;
     color: yellowgreen;
-}  
-
+}
 
 .logo-container {
-    color:black;
-    width: fit-content;
-    
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
-
-.logo-container p {
-    font-size: 30px;
+.logo-container img {
+    width: 130px; /* Adjust the width as needed */
+    height: 104px; /* Maintain aspect ratio */
 }
-
-.header {
-    background-color: white;;
-    display: flex;;
-    justify-content: space-around;
-}
-
 
 .mid ul {
     font-size: 20px;
     list-style: none;
     display: flex;
     justify-content: space-evenly;
-    gap :20px;
+    gap: 30px;
     padding-top: 20px;
 }
-

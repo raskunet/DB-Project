@@ -1,14 +1,37 @@
 extends layout.pug 
 
+append css_files
+    link(rel="stylesheet", href="/stylesheets/shopProduct.css")
+
+append css_files
+    script(src="/javascripts/shopjava.js")
 
 //- This is for test only. Structure to be changed in future
 
 
 block main_content
-    p This is from Shop
-    ul
-    each val in productList ? productList :['There are no products']
-        li 
-            a(href="/product/"+ val.productID) #{val.productDescription}
-            p #{val.Price}
-            p #{val.noOfItems}
+    section#shop
+        #search-container
+            input#search-input(type='text', placeholder='Search...')
+            #filter-options
+                select#category-select(name='category')
+                    if !selectedCategory
+                        option(disabled selected) Select Categories
+                    each category in categories
+                        option(value=category.categoryID)= category.categoryName
+                select#Sorting(name='Sort')
+                    if !selectedSort
+                        option(disabled selected) Sort by
+                    option(value='low') Price Low to High
+                    option(value='high') Price High to Low
+                    option(value='bestreviews') Reviews High to Low
+                    option(value='worstreviews') Reviews Low to High
+                button#filter-button Apply Filters
+
+        each product in products
+            .card(data-category=product.categoryID)
+                img(src=product.imagepath, alt='', style='width:100%')
+                h1.name= product.productName
+                p.price= `$${product.price}`
+                p.description= product.description
+                button(type='button', onclick=`addToCart(${product.productID})`) Add to Cart
