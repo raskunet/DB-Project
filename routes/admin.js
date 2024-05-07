@@ -5,24 +5,39 @@ const adminController = require("../controllers/adminController");
 
 router.get("/", adminController.adminRender);
 
-router.get("/userManage", adminController.usersManage);
+router.get("/usersManage", adminController.usersManage);
 
-router.get("/products", adminController.getAllProducts);
+router.get("/productsManage", adminController.productsManage);
 
-router.get("/orders", adminController.getAllOrders);
+// router.get("/ordersManage", adminController.or);
 
-router.get("/userManage/searchUser", adminController.searchUser);
+router.get("/usersManage/searchUser", adminController.searchUser);
 
-router.get("/userManage/insertUser", adminController.insertUserPage);
+router.get("/usersManage/insertUser", adminController.insertUserPage);
 
 router.post("/user/getUser", adminController.getUser);
 
 router.get("/user/getUser/:userID", adminController.getUserDetails);
 
+router.post("/product/getProduct", adminController.getProduct);
+
+
+
+router.get("/product/getProduct/:productID", adminController.getProductDetails);
+
+router.post("/product/getProduct/:productID/updateProduct", adminController.updateProduct);
+
+router.post( "/product/getProduct/:productID/deleteProduct", adminController.deleteProduct)
+
+
+// router.get("/product/getProduct/:productID", adminController.getProductDetails);
+
 router.post("/user/getUser/:userID/updateUser", adminController.updateUser);
 
 router.post("/user/getUser/:userID/deleteUser", adminController.deleteUser);
 
-router.post("/userManage/insertUser", adminController.insertUser);
+router.post("/usersManage/insertUser", adminController.insertUser);
+
+router.get("/productsManage/searchProducts", adminController.searchProducts);
 
 module.exports = router;

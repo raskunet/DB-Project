@@ -29,7 +29,7 @@ exports.getAllOrders = asyncHandler(async function (req, res, next) {
 exports.insertUser = asyncHandler(async function (req, res, next) {
   sqlCon.then(async pool => {
     try {
-      pool.request()
+      await pool.request()
         .input('firstName', msSQL.NVarChar(30), req.body.firstName)
         .input('lastName', msSQL.NVarChar(30), req.body.lastName)
         .input('email', msSQL.NVarChar(40), req.body.email)
@@ -103,11 +103,10 @@ exports.getUserDetails = asyncHandler(async function (req, res, next) {
 })
 
 exports.updateUser = asyncHandler(async function (req, res, next) {
-  console.log("In update User");
   let userID = req.params.userID;
   sqlCon.then(async pool => {
     try {
-      pool.request()
+      await pool.request()
         .input('firstName', msSQL.NVarChar(30), req.body.firstName)
         .input('lastName', msSQL.NVarChar(30), req.body.lastName)
         .input('email', msSQL.NVarChar(40), req.body.email)
@@ -140,7 +139,7 @@ exports.deleteUser = asyncHandler(async function (req, res, next) {
   let userID = req.params.userID;
   sqlCon.then(async pool => {
     try {
-      pool.request()
+      await pool.request()
         .input('userID', msSQL.Int, userID)
         .query('Delete FROM Users WHERE userID=@userID');
       
@@ -161,5 +160,135 @@ exports.deleteUser = asyncHandler(async function (req, res, next) {
     } catch (err) {
       
     }
+  })
+})
+
+exports.productsManage = asyncHandler(async function (req, res, next) {
+  res.render('productsManage', {
+    pageTitle: 'Admin | Products'
+  })
+})
+
+
+exports.searchProducts = asyncHandler(async function (req, res, next) {
+  res.render("productSearch", {
+    pageTitle:"Admin | Search Products",
+  })
+})
+
+exports.getProduct = asyncHandler(async function (req, res, next) {
+  let productID = req.body.search_products;
+  sqlCon.then(async pool => {
+    try {
+      let result = await pool
+        .request()
+        .input("productID", msSQL.Int, productID)
+        .query("SELECT * From Products WHERE productID=@productID");
+      if (result.recordset.length > 0) {
+        result = JSON.parse(JSON.stringify(result.recordset));
+        console.log(result[0])
+        res.render("productSearch", {
+          pageTitle: "Admin | Product Search",
+          productDat:result[0],
+          productFound:true
+        })
+      }
+      else {
+        res.render("productSearch", {
+          pageTitle: "Admin | Product Search",
+          productFound:false,
+        })
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  })
+})
+
+exports.getProductDetails = asyncHandler(async function (req, res, next) {
+  let productID = req.params.productID;
+  sqlCon.then(async pool => {
+    try {
+      let result = await pool.request()
+        .input('productID', msSQL.Int, productID)
+        .query('Select P.*,C.categoryName FROM Products P  ' +
+          'JOIN Category C on C.categoryID=P.categoryID ' +
+          'WHERE P.productID=@productID'
+        );
+      result = JSON.parse(JSON.stringify(result.recordset));
+
+      let categorysName = await pool.request()
+        .query('SELECT * FROM Category C');
+      categorysName = JSON.parse(JSON.stringify(categorysName.recordset));
+      console.log(result[0])
+      res.render("productSearchResult", {
+        pageTitle:'Admin | Product Search',
+        productData: result[0],
+        productFound: true,
+        categories:categorysName,
+      })
+    } catch (err) {
+      console.log(err);
+    }
+  })
+})
+
+exports.updateProduct = asyncHandler(async function (req, res, next) {
+  let productID = req.params.productID;
+  console.log(req.body);
+  sqlCon.then(async pool => {
+    try {
+
+      let updateResult = await pool.request()
+        .input('productID',msSQL.Int,productID)
+        .input('productName', msSQL.NVarChar(100), req.body.productName)
+        .input('price', msSQL.Decimal(10, 2),req.body.price)
+        .input('description', msSQL.NVarChar(255),req.body.description)
+        .input('category', msSQL.Int, req.body.category)
+        .query(
+          "UPDATE Products " +
+          "SET productName=@productName, price=@price, description=@description, categoryID=@category " +
+          "WHERE productID=@productID"
+      )
+
+      let result = await pool
+        .request()
+        .input("productID", msSQL.Int, productID)
+        .query(
+          "Select P.*,C.categoryName FROM Products P  " +
+            "JOIN Category C on C.categoryID=P.categoryID " +
+            "WHERE P.productID=@productID"
+        );
+      result = JSON.parse(JSON.stringify(result.recordset));
+
+      let categorysName = await pool.request()
+        .query('SELECT * FROM Category C');
+      categorysName = JSON.parse(JSON.stringify(categorysName.recordset));
+
+      res.render("productSearchResult", {
+        pageTitle: 'Admin | Product Search',
+        productFound: true,
+        productData: result[0],
+        categories:categorysName,
+        updateProduct:true,
+      });
+    } catch (err) {
+      console.log(err);
+      next();
+    }
+  });
+})
+
+
+exports.deleteProduct = asyncHandler(async function (req, res, next) {
+  let productID = req.params.productID;
+  sqlCon.then(async pool => {
+    await pool.request()
+      .input('productID', msSQL.Int, productID)
+      .query('DELETE FROM products WHERE productID=@productID');
+    res.render("productSearchResult", {
+      pageTitle: 'Admin | Product Data',
+      productDelete: true,
+    })
   })
 })

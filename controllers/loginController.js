@@ -19,20 +19,26 @@ exports.loginUser = asyncHandler(async function (req, res, next) {
         .input("userMail", msSQL.NVarChar(40), userMail)
         .input("userPwd",msSQL.NVarChar(30),userPassword)
         .query("SELECT * FROM Users WHERE emailAddress=@userMail AND userPassword=@userPwd");
-      result = JSON.parse(JSON.stringify(result.recordset));
-      req.session.regenerate(function () {
-        req.session.userID = result[0].userID;
-        req.session.success = "Authenticated user as " + result[0].userID;
-        req.session.save(function (err){
-          if (err) {
-            console.log(err);
-            return err;
-          }
-          setTimeout(() => {
-            res.redirect("/");
-          }, 2000);
-        })
-      })
+     
+      if (result.recordset.length > 0) {
+        result = JSON.parse(JSON.stringify(result.recordset));
+        req.session.regenerate(function () {
+          req.session.userID = result[0].userID;
+          req.session.success = "Authenticated user as " + result[0].userID;
+          req.session.save(function (err) {
+            if (err) {
+              console.log(err);
+              return err;
+            }
+            setTimeout(() => {
+              res.redirect("/");
+            }, 2000);
+          });
+        });
+      }
+      else {
+        res.send("<h1>User not Exists<h1>").status(404)
+      }
     } catch (err) {
       console.log(err);
     }

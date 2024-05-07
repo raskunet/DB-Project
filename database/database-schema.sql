@@ -9,3 +9,5 @@ SELECT * from Users
 
 -- kdwk@kwndk 12
 select *from products
+
+SELECT * FROM Category C
