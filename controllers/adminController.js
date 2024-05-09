@@ -292,3 +292,41 @@ exports.deleteProduct = asyncHandler(async function (req, res, next) {
     })
   })
 })
+
+
+exports.insertProductPage = asyncHandler(async function (req, res, next) {
+  sqlCon.then(async pool => {
+     let categorysName = await pool.request().query("SELECT * FROM Category C");
+    categorysName = JSON.parse(JSON.stringify(categorysName.recordset));
+    res.render("productInsert", {
+      pageTitle: "Admin | Insert Product",
+      categories:categorysName,
+    });
+  })
+  
+})
+
+
+// des 255
+// path 100
+//
+exports.insertProduct = asyncHandler(async function (req, res, next) {
+  sqlCon.then(async pool => {
+    await pool
+      .request()
+      .input("productName",
+        msSQL.NVarChar(100), req.body.productName)
+      .input("price", msSQL.Decimal(10, 2), req.body.price)
+      .input("description", msSQL.NVarChar(255), req.body.description)
+      .input("category", msSQL.Int, req.body.category)
+      .input("imagePath", msSQL.NVarChar(100), req.body.imagePath)
+      .query(
+        "INSERT INTO Products(productName,price,description,imagePath,categoryID) " +
+          "VALUES (@productName,@price,@description,@imagePath,@category) "
+      );
+   res.render("productInsert", {
+     pageTitle: "Admin | Insert Product",
+     productInsert:true,
+   });
+  })
+})

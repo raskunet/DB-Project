@@ -27,10 +27,11 @@ router.get("/product/getProduct/:productID", adminController.getProductDetails);
 
 router.post("/product/getProduct/:productID/updateProduct", adminController.updateProduct);
 
-router.post( "/product/getProduct/:productID/deleteProduct", adminController.deleteProduct)
+router.post("/product/getProduct/:productID/deleteProduct", adminController.deleteProduct);
 
+router.post("/productsManage/insertProduct", adminController.insertProduct);
 
-// router.get("/product/getProduct/:productID", adminController.getProductDetails);
+router.get("/productsManage/insertProduct",adminController.insertProductPage);
 
 router.post("/user/getUser/:userID/updateUser", adminController.updateUser);
 

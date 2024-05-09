@@ -1,0 +1,40 @@
+extends admin.pug
+
+append admin_css
+    link(rel="stylesheet", href="/stylesheets/productinsert.css")
+
+block admin_main_content
+    if productInsert
+      h2(style='color:red;padding-left:40px;') Product Inserted Successfully
+    else
+      section#insertproductResultContainer
+        h2(style="margin-left:40px;margin-top:5px")  product Data
+        form.insert_product_form(method="POST" , action="/admin/productsManage/insertProduct")
+            .info_name.input_flex
+                .name_container
+                    label(for="productName") Product Name
+                    br
+                    input#product_name(type="text", name="productName" value="")
+                .category_container
+                    label(for="category") Category
+                    br
+                    select#categories(name="category")
+                      each category in categories
+                        option(value=category.categoryID) #{category.categoryName}
+            .info-misc.input_flex
+                .info_price 
+                    label(for="price") Price
+                    br
+                    input#product_price(type="number", name="price", step=".01",value="") 
+                .info_image
+                    label(for="imagepath") Image Path
+                    br
+                    input#imgPath(type="text", name="imagePath") 
+            .info_description.input_flex
+                .info_description 
+                    label(for="description") Description
+                    br
+                    input#productDescription(type="text", name="description",value="", max=255,min=10) 
+            section.form_seaction_2 
+                .insert_product_submit_container 
+                    button.updateproduct(type="submit", name="insert_product", ) Insert Product

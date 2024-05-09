@@ -1,6 +1,6 @@
 
 
-.searched_product_form{
+.insert_product_form{
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(3,1fr);
@@ -21,7 +21,7 @@
     padding-top:10px;
     width:800px;
     display: flex;
-    justify-content: space-between;
+    justify-content:space-between;
 }
 
 .info_description {
@@ -56,9 +56,8 @@ input {
 
 
 #categories{
-    width:100px;
+    width:200px;
     padding: 10px 5px;
     border:2px solid black;
     border-radius: 5px;
-
 }
