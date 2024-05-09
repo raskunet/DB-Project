@@ -41,4 +41,11 @@ router.post("/usersManage/insertUser", adminController.insertUser);
 
 router.get("/productsManage/searchProducts", adminController.searchProducts);
 
+router.get("/ordersManage", adminController.ordersManage);
+
+router.post("/orders/getOrder", adminController.getOrder);
+
+router.get("/ordersManage/searchOrders", adminController.searchOrders);
+
+
 module.exports = router;

@@ -11,3 +11,11 @@ SELECT * from Users
 select *from products
 
 SELECT * FROM Category C
+
+SELECT * FROM Orders
+
+SELECT * FROM OrderDetails
+
+SELECT O.orderID,OD.userID,O.orderDate
+FROM Orders O JOIN OrderDetails OD on OD.orderID=O.orderID
+WHERE O.orderID=4

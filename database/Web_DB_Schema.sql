@@ -142,3 +142,27 @@ VALUES ('Ultimate Dual Monitor Setup', 1999.99, 'Transform your workspace into a
 INSERT INTO Products (productName, price, description, imagepath, categoryID)
 VALUES ('Mystic Beast PC', 699.99, 'Unleash the power of the Mystic Beast, featuring top-of-the-line components for unbeatable performance in gaming and productivity tasks.', '/images/products/pcpack4.jpeg',1);
 select *from products
+
+
+
+-- Inserting data into Orders table
+INSERT INTO Orders (orderDate, shippingStatus, paymentStatus, shippingAddress, userID)
+VALUES 
+    ('2024-05-10', 'P', 'U', '123 Main St, City, Country', 3),
+    ('2024-05-09', 'P', 'P', '456 Elm St, Town, Country', 4),
+    ('2024-05-08', 'S', 'P', '789 Oak St, Village, Country', 3),
+    ('2024-05-07', 'S', 'U', '101 Pine St, Hamlet, Country', 4),
+    ('2024-05-06', 'P', 'P', '202 Maple St, Borough, Country', 3);
+
+SELECT * FROM Orders
+SELECT * FROM OrderDetails
+-- Inserting data into OrderDetails table
+INSERT INTO OrderDetails (orderID, userID, productID, quantityOfProduct)
+VALUES
+    (4, 3, 9, 2),
+    (4, 3, 3, 1),
+    (5, 3, 5, 3),
+    (5, 4, 10, 1),
+    (6, 4, 4, 2),
+    (6, 3, 10, 1),
+    (7, 4, 11, 1);

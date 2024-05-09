@@ -330,3 +330,39 @@ exports.insertProduct = asyncHandler(async function (req, res, next) {
    });
   })
 })
+
+
+exports.ordersManage = asyncHandler(async function (req, res, next) {
+  res.render("ordersManage", {
+    pageTitle: "Admin | Search Orders",
+  })
+})
+
+exports.searchOrders = asyncHandler(async function (req, res, next) {
+    res.render("ordersSearch", {
+      pageTitle: "Admin | Search Orders",
+    });  
+})
+
+exports.getOrder = asyncHandler(async function (req, res, next) {
+  let orderId = req.body.search_orders;
+  console.log(req.params);
+  sqlCon.then(async pool => {
+    let result = await pool
+      .request()
+      .input("orderID", msSQL.Int, orderId)
+      .query(
+        "SELECT O.orderID,O.userID,O.orderDate " +
+          "FROM Orders O " +
+          "WHERE O.orderID=@orderID"
+      );
+    result = JSON.parse(JSON.stringify(result.recordset));
+    console.log(result);
+    res.render("ordersSearch", {
+      pageTitle: "Admin | Search Order",
+      orderDat: result[0],
+      orderFound:true,
+    })
+  })
+});
+
