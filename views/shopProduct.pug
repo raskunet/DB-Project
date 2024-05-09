@@ -21,12 +21,21 @@ block main_content
                         option(disabled selected) Sort by
                     option(value='low') Price Low to High
                     option(value='high') Price High to Low
-                    option(value='bestreviews') Reviews High to Low
-                    option(value='worstreviews') Reviews Low to High
         each product in products
             .card(data-category=product.categoryID) 
                 img(src=product.imagepath, alt='', style='width:100%')
                 h1.name= product.productName
                 p.price= `$${product.price}`
                 p.description= product.description
-                button(type='button', onclick=`addToCart(${product.productID})`) Add to Cart
+                
+                // New section to display reviews
+                .reviews-container
+                    h3 Reviews
+                    ul.reviews-list(id=`product-${product.productID}-reviews`)
+                        each review in product.reviews
+                            li= review.Text + ' - ' + review.rating + ' stars'
+                
+                // Add to Cart button within a form
+                form(method='POST', action='http://localhost:3000/shop/addToCart')
+                    input(type='hidden', name='productId', value=product.productID)
+                    button(type='submit') Add to Cart
