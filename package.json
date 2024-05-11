@@ -4,12 +4,14 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "devstart": "nodemon ./bin/www -e js,pug,css ",
+    "devstart": "nodemon ./bin/www -e js,pug,css",
     "serverstart": "SET DEBUG=DB-Project:* & npm run devstart"
   },
   "dependencies": {
+    "body-parser": "^1.20.2",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
+    "ejs": "^3.1.10",
     "express": "^4.19.2",
     "express-async-handler": "^1.2.0",
     "express-session": "^1.18.0",
