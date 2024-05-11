@@ -7,3 +7,5 @@ use webData;
 -- select *from products
 
 SELECT * FROM Orders
+--select *from products
+select *from Users
