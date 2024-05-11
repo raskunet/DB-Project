@@ -66,12 +66,9 @@ app.use("/contact", contactRouter);
 app.use("/admin", adminRouter);
 app.use("/profile", profileRouter);
 app.use("/shop", shopRouter);
-<<<<<<< HEAD
 app.use("/cart", cartRouter);
-=======
 app.use("/edit", editRouter);
 
->>>>>>> origin/ammadatif
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
