@@ -1,0 +1,58 @@
+extends layout.pug
+
+append css_files
+    link(rel="stylesheet", href="/stylesheets/profile.css")
+
+append css_files
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css')
+
+block main_content
+    if userData
+        .navbar-top
+            .title
+                h1 Profile
+        .main
+            h2 IDENTITY
+            .card
+                .card-body
+                    a#editLink(href='/edit')
+                     i.fa.fa-pen.fa-xs.edit
+
+                    table
+                        tbody
+                            each record in userData
+                                tr
+                                    td FirstName: #{record.firstName}
+                                tr
+                                    td LastName: #{record.lastName}
+                                tr 
+                                    td Email: #{record.emailAddress}
+            h2 SOCIAL MEDIA
+            .card
+                .card-body
+                    .social-media
+                        span.fa-stack.fa-sm
+                            i.fas.fa-circle.fa-stack-2x
+                            i.fab.fa-facebook.fa-stack-1x.fa-inverse
+                        span.fa-stack.fa-sm
+                            i.fas.fa-circle.fa-stack-2x
+                            i.fab.fa-twitter.fa-stack-1x.fa-inverse
+                        span.fa-stack.fa-sm
+                            i.fas.fa-circle.fa-stack-2x
+                            i.fab.fa-instagram.fa-stack-1x.fa-inverse
+                        span.fa-stack.fa-sm
+                            i.fas.fa-circle.fa-stack-2x
+                            i.fab.fa-invision.fa-stack-1x.fa-inverse
+                        span.fa-stack.fa-sm
+                            i.fas.fa-circle.fa-stack-2x
+                            i.fab.fa-github.fa-stack-1x.fa-inverse
+                        span.fa-stack.fa-sm
+                            i.fas.fa-circle.fa-stack-2x
+                            i.fab.fa-whatsapp.fa-stack-1x.fa-inverse
+                        span.fa-stack.fa-sm
+                            i.fas.fa-circle.fa-stack-2x
+                            i.fab.fa-snapchat.fa-stack-1x.fa-inverse
+    else
+        p No user data found
+
+
