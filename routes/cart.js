@@ -9,6 +9,4 @@ router.get('/', cartController.cartRender);
 // Route for handling login form submissions and authenticating user
 router.post('/insertingValues', cartController.insertingValues);
 
-router.post('/updateQuantity', cartController.updateQuantity);
-
 module.exports = router;

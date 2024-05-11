@@ -1,11 +1,3 @@
-//const asyncHandler = require("express-async-handler");
-// const { msSQL, sqlCon } = require("../db.config");
-
-
-// exports.cartRender = asyncHandler(async function (req, res, next) {
-
-//     res.status(200).render('cart')
-// })
 const { msSQL, sqlCon } = require("../db.config");
 
 exports.cartRender = async function (req, res, next) {
@@ -58,6 +50,7 @@ exports.insertingValues = async function (req, res, next) {
                     .query(
                         `declare @oid int 
                         set @oid = (select top 1 orderID from Orders order by orderID desc)
+                        if(@quantity > 0)
                         INSERT INTO OrderDetails VALUES (@oid,1,@productId, @quantity)`
                     );
             });
@@ -68,43 +61,4 @@ exports.insertingValues = async function (req, res, next) {
         console.error('Database error:', err);
         res.status(500).send('Internal Server Error');
     }
-};
-//exports.use(bodyParser.json());
-exports.updateQuantity = async function(req, res,next) {
-    // Assuming you have a database connection and a Product model
-    // This is just a placeholder, you need to replace it with your actual database code
-    // Also, error handling and validation should be added
-    try{
-        const productId = req.body.productId;
-        const quantity = req.body.quantity;
-
-        await sqlCon.then(async pool => {
-            let result = await pool
-                .request()
-                .input('productId', msSQL.Int, productId)
-                .input('quantity', msSQL.Int, quantity)
-                // Add more input parameters as needed
-                .query(
-                    `update Cart set Quantity=@quantity where productID=@productId and userID=1 `
-                );
-        });
-        res.redirect('/cart');
-    } catch (err) {
-        // Handle any errors
-        console.error('Database error:', err);
-        res.status(500).send('Internal Server Error');
-    }
-
-    // // Update the quantity in the database
-    // // Example code using Mongoose (MongoDB) assuming you have a Product model
-    // // Replace it with your actual database code
-    // Product.findOneAndUpdate({ _id: productId }, { quantity: quantity }, { new: true }, (err, updatedProduct) => {
-    //     if (err) {
-    //         console.error('Error updating quantity:', err);
-    //         res.status(500).send('Error updating quantity');
-    //     } else {
-    //         // If the update was successful, send a success response
-    //         res.status(200).send('Quantity updated successfully');
-    //     }
-    // });
 };
