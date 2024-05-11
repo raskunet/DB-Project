@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const deliveryForm = document.getElementById('delivery-form');
     const totalPriceElement = document.querySelector('.total');
     const priceElements = document.querySelectorAll('.price');
-    const productsData = document.getElementsByTagName('#prod');
     // Event listener for increasing quantity
     // increaseButtons.forEach(function(button, index) {
     //     button.addEventListener('click', function() {
@@ -34,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
     increaseButtons.forEach(function(button, index) {
         button.addEventListener('click', function() {
             // Calculate the price per unit
-            const productId =1; //document.querySelector('input[name="productId"]').value;
+            const productId =form.querySelector('input[name="productId"]').value;
             const updatedQuantity = parseInt(quantityValues[index].textContent) + 1; // Increment the quantity by 1
             const data = { productId: productId, quantity: updatedQuantity };
             updateQ(data,index,updatedQuantity);

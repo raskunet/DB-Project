@@ -18,10 +18,12 @@ block main_content
                     p.price= (product.price*product.Quantity).toFixed(2)
                     input(type="hidden" name="productId"  value=product.productID)
                     .quantity-controls
-                        button.quantity-btn.decrease-btn -
+                      form(method='POST', action='http://localhost:3000/cart/updateQuantity')
+                        input(type='hidden', name='productId', value=product.productID)
+                        button.quantity-btn.decrease-btn(type='submit') -
                         span.quantity-value= product.Quantity
-                        button.quantity-btn.increase-btn +
-                        button.remove-item-btn Remove
+                        button.quantity-btn.increase-btn(type='submit') +
+                        button.remove-item-btn(type='submit') Remove
     - let totalPrice = products.reduce((acc, product) => acc + (product.price * product.Quantity), 0)                    
     .cart-total
       h2.total= totalPrice.toFixed(2)  
