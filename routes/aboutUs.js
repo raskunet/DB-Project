@@ -3,8 +3,8 @@ let router = express.Router();
 
 router.get("/", function (req, res, next) {
     res.render("aboutUs", {
-        pageTitle: "About Us",
-        user: req.user,
+      pageTitle: "About Us",
+      user: req.session.userID,
     });
 })
 

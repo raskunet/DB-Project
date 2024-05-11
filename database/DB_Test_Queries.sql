@@ -14,6 +14,8 @@ SELECT * FROM Category C
 
 SELECT * FROM Orders
 
+SELECT * FROM Carts
+
 SELECT * FROM OrderDetails
 
 SELECT O.orderID,OD.userID,O.orderDate

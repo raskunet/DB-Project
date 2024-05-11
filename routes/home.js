@@ -3,12 +3,13 @@ const { sqlCon, msSQL } = require("../db.config");
 let router = express.Router(); //  here /home is /
 
 router.get("/", function (req, res, next) {
-  // console.log("req.session.userID in home router : ", req.session.userID);
+    console.log("req.session.userID in home router : ", req.session.userID);
+    console.log("req.userID in home router : ", req.user);
   res.render(
     "home",
     {
       pageTitle: "home",
-      user: req.user,
+        user: req.session.userID,
     },
     function (err, html) {
       if (err) console.log(err);

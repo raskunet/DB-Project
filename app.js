@@ -26,9 +26,13 @@ app.set("view engine", "pug");
 
 const authFunc = (req, res, next) => {
   console.log("req.session : ", req.session);
-  if (req.session.userID) {
+  if (req.session.userID!==undefined) {
     req.user = req.session.userID;
     req.session.isLogged = true;
+    console.log("Req.user is :", req.user);
+  }
+  else {
+    res.redirect("/login");
   }
   next();
 };
@@ -55,7 +59,7 @@ app.use(
 );
 
 // All routers initialization with corresponding paths/urls
-app.all("*", authFunc);
+app.all("/", authFunc);
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/home", homeRouter);
@@ -68,7 +72,6 @@ app.use("/profile", profileRouter);
 app.use("/shop", shopRouter);
 app.use("/cart", cartRouter);
 app.use("/edit", editRouter);
-
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
