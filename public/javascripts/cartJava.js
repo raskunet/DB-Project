@@ -32,49 +32,52 @@ document.addEventListener('DOMContentLoaded', function() {
     //         totalPriceElement.textContent = totalPrice.toFixed(2);
     //     });
     // });
-
     increaseButtons.forEach(function(button, index) {
         button.addEventListener('click', function() {
             // Calculate the price per unit
             const pricePerUnit = parseFloat(priceElements[index].textContent) / parseInt(quantityValues[index].textContent);
             
             // Increment the quantity
-            const productId = 1;
+            const productId = 1;/* You need to get the product ID associated with this button */;
             const updatedQuantity = parseInt(quantityValues[index].textContent) + 1; // Increment the quantity by 1
             const data = { productId: productId, quantity: updatedQuantity };
             
-            // Send an AJAX request to update the quantity in the database
-            const xhr = new XMLHttpRequest();
-            xhr.open('POST', '/updateQuantity', true);
-            xhr.setRequestHeader('Content-Type', 'application/json');
-            xhr.onload = function() {
-                if (xhr.status === 200) {
-                    // Request was successful, update the quantity in the UI
-                    quantityValues[index].textContent = updatedQuantity;
-                    quantityValues[index].value = updatedQuantity;
-    
-                    // Calculate the new total price for the item
-                    const newTotalPriceForItem = parseFloat(priceElements[index].textContent) + pricePerUnit;
-    
-                    // Update the price element for the item
-                    priceElements[index].textContent = newTotalPriceForItem.toFixed(2);
-    
-                    // Update the total price
-                    const totalPrice = parseFloat(totalPriceElement.textContent) + pricePerUnit;
-                    totalPriceElement.textContent = totalPrice.toFixed(2);
-                } else {
-                    // Handle error if any
-                    console.error('Request failed:', xhr.statusText);
+            // Send an AJAX request to update the quantity in the database using Fetch API
+            fetch('/updateQuantity', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
                 }
-            };
-            xhr.onerror = function() {
-                console.error('Request failed.');
-            };
-            xhr.send(JSON.stringify(data));
+                return response.text();
+            })
+            .then(data => {
+                // Request was successful, update the quantity in the UI
+                quantityValues[index].textContent = updatedQuantity;
+                quantityValues[index].value = updatedQuantity;
+    
+                // Calculate the new total price for the item
+                const newTotalPriceForItem = parseFloat(priceElements[index].textContent) + pricePerUnit;
+    
+                // Update the price element for the item
+                priceElements[index].textContent = newTotalPriceForItem.toFixed(2);
+    
+                // Update the total price
+                const totalPrice = parseFloat(totalPriceElement.textContent) + pricePerUnit;
+                totalPriceElement.textContent = totalPrice.toFixed(2);
+            })
+            .catch(error => {
+                // Handle errors here
+                console.error('Error:', error);
+            });
         });
     });
     
-
 
         // Event listener for decreasing quantity
     decreaseButtons.forEach(function(button, index) {
