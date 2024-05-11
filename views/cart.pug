@@ -7,7 +7,7 @@ append css_files
     script(src="/javascripts/cartJava.js")    
 
 block main_content
-  .cart-container
+  form.cart-container(method="post" action='http://localhost:3000/cart/insertingValues')
     h1 Your Cart
     each product in products
         .cart-items
@@ -17,15 +17,17 @@ block main_content
                     h2= product.productName
                     p.price= (product.price*product.Quantity).toFixed(2)
                     .quantity-controls
-                        button.quantity-btn.decrease-btn -
+                        input(type='hidden', name='productId', value=product.productID)
+                        input(type='hidden' name="quantity" id="quantityInput" value=product.Quantity)
+                        button.quantity-btn.decrease-btn(type='button') -
                         span.quantity-value= product.Quantity
-                        button.quantity-btn.increase-btn +
-                        button.remove-item-btn Remove
+                        button.quantity-btn.increase-btn(type='button') +
+                        button.remove-item-btn(type='button') Remove
     - let totalPrice = products.reduce((acc, product) => acc + (product.price * product.Quantity), 0)                    
     .cart-total
       h2.total= totalPrice.toFixed(2)  
-    form#delivery-form(method="post" action='http://localhost:3000/cart/insertingValues')
-      input(type="hidden" name="products"  value=JSON.stringify(products) id="products-input" tag="#prod")
+    #delivery-form
+      input(type="hidden" name="products"  value=JSON.stringify(products) id="products-input" )
       fieldset.form-fieldset
         legend Address Details
         .form-row
@@ -37,4 +39,5 @@ block main_content
         .form-row
           label(for="city") City:
           input#city(name='cit_y',type="text", required)
-      button.submit-btn(type="submit") Place Order  
+      button.submit-btn(type="submit") Place Order 
+       
