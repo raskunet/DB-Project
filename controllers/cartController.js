@@ -51,7 +51,8 @@ exports.insertingValues = async function (req, res, next) {
                         `declare @oid int 
                         set @oid = (select top 1 orderID from Orders order by orderID desc)
                         if(@quantity > 0)
-                        INSERT INTO OrderDetails VALUES (@oid,1,@productId, @quantity)`
+                        INSERT INTO OrderDetails VALUES (@oid,1,@productId, @quantity)
+                        delete from Cart`
                     );
             });
         });
