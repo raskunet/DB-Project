@@ -5,4 +5,5 @@ use webData;
 -- SELECT * from Users
 
 --select *from products
-select *from Users
+
+select *from cart
