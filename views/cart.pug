@@ -16,6 +16,7 @@ block main_content
                 .item-details
                     h2= product.productName
                     p.price= (product.price*product.Quantity).toFixed(2)
+                    input(type="hidden" name="productId"  value=product.productID)
                     .quantity-controls
                         button.quantity-btn.decrease-btn -
                         span.quantity-value= product.Quantity

@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const totalPriceElement = document.querySelector('.total');
     const priceElements = document.querySelectorAll('.price');
     const productsData = document.getElementsByTagName('#prod');
-
     // Event listener for increasing quantity
     // increaseButtons.forEach(function(button, index) {
     //     button.addEventListener('click', function() {
@@ -35,28 +34,24 @@ document.addEventListener('DOMContentLoaded', function() {
     increaseButtons.forEach(function(button, index) {
         button.addEventListener('click', function() {
             // Calculate the price per unit
-            const pricePerUnit = parseFloat(priceElements[index].textContent) / parseInt(quantityValues[index].textContent);
-            
-            // Increment the quantity
-            const productId = 1;/* You need to get the product ID associated with this button */;
+            const productId =1; //document.querySelector('input[name="productId"]').value;
             const updatedQuantity = parseInt(quantityValues[index].textContent) + 1; // Increment the quantity by 1
             const data = { productId: productId, quantity: updatedQuantity };
-            
-            // Send an AJAX request to update the quantity in the database using Fetch API
-            fetch('/updateQuantity', {
+            updateQ(data,index,updatedQuantity);
+        });
+    });
+    async function updateQ(data,index,updatedQuantity) {
+        try {
+            const response = await fetch('/updateQuantity', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(data)
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.text();
-            })
-            .then(data => {
+                body: JSON.stringify({index})
+            });
+
+            if (response.ok) {
+                const pricePerUnit = parseFloat(priceElements[index].textContent) / parseInt(quantityValues[index].textContent);
                 // Request was successful, update the quantity in the UI
                 quantityValues[index].textContent = updatedQuantity;
                 quantityValues[index].value = updatedQuantity;
@@ -70,13 +65,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Update the total price
                 const totalPrice = parseFloat(totalPriceElement.textContent) + pricePerUnit;
                 totalPriceElement.textContent = totalPrice.toFixed(2);
-            })
-            .catch(error => {
-                // Handle errors here
-                console.error('Error:', error);
-            });
-        });
-    });
+                console.log('Product added to cart successfully.');
+                // Optionally, you can update the UI to reflect the item being added to the cart
+            } else {
+                console.error('Failed to add product to cart.');
+            }
+        } catch (error) {
+            console.error('Error adding product to cart:', error);
+        }
+    }
     
 
         // Event listener for decreasing quantity

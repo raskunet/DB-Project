@@ -81,8 +81,8 @@ exports.updateQuantity = async function(req, res,next) {
         await sqlCon.then(async pool => {
             let result = await pool
                 .request()
-                .input('productId', msSQL.Int, req.body.productId)
-                .input('quantity', msSQL.Int, req.body.quantity)
+                .input('productId', msSQL.Int, productId)
+                .input('quantity', msSQL.Int, quantity)
                 // Add more input parameters as needed
                 .query(
                     `update Cart set Quantity=@quantity where productID=@productId and userID=1 `
