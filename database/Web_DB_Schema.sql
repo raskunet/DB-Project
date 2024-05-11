@@ -18,7 +18,7 @@ SELECT * FROM Users
 
 CREATE TABLE Persons (
     personId int NOT NULL IDENTITY (1,1),
-    lastName varchar(255) NOT NULL,
+    lastName varchar(255) NOT NULL,s
     firstName varchar(255),
     Age int,
     PRIMARY KEY (Personid)

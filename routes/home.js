@@ -42,4 +42,10 @@ router.get("/shop", function (req, res, next) {
   res.redirect("/shop");
 });
 
+
+router.get("/cart", function (req, res, next) {
+    res.redirect("/cart");
+  });
+
+
 module.exports = router;

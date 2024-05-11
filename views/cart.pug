@@ -1,0 +1,40 @@
+extends layout.pug
+
+append css_files
+    link(rel="stylesheet", href="./stylesheets/cart.css")
+
+append css_files
+    script(src="/javascripts/cartJava.js")    
+
+block main_content
+  .cart-container
+    h1 Your Cart
+    each product in products
+        .cart-items
+            .cart-item
+                img(src=product.imagepath, alt='')
+                .item-details
+                    h2= product.productName
+                    p.price= (product.price*product.Quantity).toFixed(2)
+                    .quantity-controls
+                        button.quantity-btn.decrease-btn -
+                        span.quantity-value= product.Quantity
+                        button.quantity-btn.increase-btn +
+                        button.remove-item-btn Remove
+    - let totalPrice = products.reduce((acc, product) => acc + (product.price * product.Quantity), 0)                    
+    .cart-total
+      h2.total= totalPrice.toFixed(2)  
+    form#delivery-form(method="post" action='http://localhost:3000/cart/insertingValues')
+      input(type="hidden" name="products"  value=JSON.stringify(products) id="products-input" tag="#prod")
+      fieldset.form-fieldset
+        legend Address Details
+        .form-row
+          label(for="fullname") Full Name:
+          input#fullname(name='full_name',type='name', required)
+        .form-row
+          label(for="address") Address:
+          input#address(name='add_ress',type='address', required)
+        .form-row
+          label(for="city") City:
+          input#city(name='cit_y',type="text", required)
+      button.submit-btn(type="submit") Place Order  
