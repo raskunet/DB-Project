@@ -1,0 +1,122 @@
+body {
+    font-family: 'Roboto Condensed', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #161616;
+  }
+  
+  .cart-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    color: white;
+  }
+  
+  .cart-items {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .cart-item {
+    display: flex;
+    align-items: right;
+    margin-bottom: 20px;
+  }
+  
+  .cart-item img {
+    width: 200px;
+    margin-right: 10px;
+  }
+  
+  .item-details h2 {
+    margin: 0;
+    text-align: left;
+    margin-left: 200px;
+  }
+  
+  .item-details p {
+    margin: 5px 0;
+    text-align: left;
+    margin-left: 200px;
+  }
+  
+  .remove-item-btn {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    text-align: left;
+    margin-left: 200px;
+  }
+  
+  .remove-item-btn:hover {
+    background-color: #d32f2f;
+  }
+  
+  .cart-total {
+    text-align: right;
+    margin-right: 100px;
+  }
+  
+  #delivery-form .form-fieldset {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  #delivery-form legend {
+    font-weight: bold;
+  }
+  
+  #delivery-form .form-row {
+    margin-bottom: 10px;
+  }
+  
+  #delivery-form label {
+    display: inline-block;
+    width: 120px;
+  }
+  
+  #delivery-form input {
+    width: calc(100% - 140px);
+    padding: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .submit-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .submit-btn:hover {
+    background-color: grey;
+  }
+  
+  .quantity-controls {
+    display: flex;
+    align-items: left;
+    margin-left: 80px;
+  }
+  
+  .quantity-btn {
+    background-color: #161616;
+    color: white;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+  }
+  
+  .quantity-btn:hover {
+    background-color: grey;
+  }
+  
+  .quantity-value {
+    margin: 0 10px;
+  }
+  

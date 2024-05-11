@@ -36,6 +36,10 @@ router.get("/admin", function (req, res,next) {
 router.get("/shop", function (req, res, next) {
   res.redirect("/shop");
 });
+
+router.get("/cart", function (req, res, next) {
+    res.redirect("/cart");
+  });
 // router.get("/signUp/*.png", function (req, res, next) {
 //     console.log('In images route')
 //     res.contentType('image/png');
