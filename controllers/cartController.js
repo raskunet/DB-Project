@@ -88,6 +88,7 @@ exports.updateQuantity = async function(req, res,next) {
                     `update Cart set Quantity=@quantity where productID=@productId and userID=1 `
                 );
         });
+        res.redirect('/cart');
     } catch (err) {
         // Handle any errors
         console.error('Database error:', err);

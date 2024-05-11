@@ -30,58 +30,65 @@ document.addEventListener('DOMContentLoaded', function() {
     //         totalPriceElement.textContent = totalPrice.toFixed(2);
     //     });
     // });
-    increaseButtons.forEach(function(button, index) {
-        button.addEventListener('click', function() {
-            // Calculate the price per unit
-            const productId =form.querySelector('input[name="productId"]').value;
-            const updatedQuantity = parseInt(quantityValues[index].textContent) + 1; // Increment the quantity by 1
-            const data = { productId: productId, quantity: updatedQuantity };
-            updateQ(data,index,updatedQuantity);
+    // increaseButtons.forEach(function(button, index) {
+    //     button.addEventListener('click', function() {
+    //         // Calculate the price per unit
+    //         const productId =form.querySelector('input[name="productId"]').value;
+    //         const updatedQuantity = parseInt(quantityValues[index].textContent) + 1; // Increment the quantity by 1
+    //         const data = { productId: productId, quantity: updatedQuantity };
+    //         updateQ(data,index,updatedQuantity);
+    //     });
+    // });
+    const updq = document.querySelectorAll('.update-cart-form');
+    updq.forEach(form => {
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+            const quantityInput = document.getElementById('quantityInput');
+            quantityInput.value=10;
         });
     });
-    async function updateQ(data,index,updatedQuantity) {
-        try {
-            const response = await fetch('/updateQuantity', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({index})
-            });
+    // async function updateQ(data,index,updatedQuantity) {
+    //     try {
+    //         const response = await fetch('/updateQuantity', {
+    //             method: 'POST',
+    //             headers: {
+    //                 'Content-Type': 'application/json'
+    //             },
+    //             body: JSON.stringify({updatedQuantity})
+    //         });
 
-            if (response.ok) {
-                const pricePerUnit = parseFloat(priceElements[index].textContent) / parseInt(quantityValues[index].textContent);
-                // Request was successful, update the quantity in the UI
-                quantityValues[index].textContent = updatedQuantity;
-                quantityValues[index].value = updatedQuantity;
+    //         if (response.ok) {
+    //             const pricePerUnit = parseFloat(priceElements[index].textContent) / parseInt(quantityValues[index].textContent);
+    //             // Request was successful, update the quantity in the UI
+    //             quantityValues[index].textContent = updatedQuantity;
+    //             quantityValues[index].value = updatedQuantity;
     
-                // Calculate the new total price for the item
-                const newTotalPriceForItem = parseFloat(priceElements[index].textContent) + pricePerUnit;
+    //             // Calculate the new total price for the item
+    //             const newTotalPriceForItem = parseFloat(priceElements[index].textContent) + pricePerUnit;
     
-                // Update the price element for the item
-                priceElements[index].textContent = newTotalPriceForItem.toFixed(2);
+    //             // Update the price element for the item
+    //             priceElements[index].textContent = newTotalPriceForItem.toFixed(2);
     
-                // Update the total price
-                const totalPrice = parseFloat(totalPriceElement.textContent) + pricePerUnit;
-                totalPriceElement.textContent = totalPrice.toFixed(2);
-                console.log('Product added to cart successfully.');
-                // Optionally, you can update the UI to reflect the item being added to the cart
-            } else {
-                console.error('Failed to add product to cart.');
-            }
-        } catch (error) {
-            console.error('Error adding product to cart:', error);
-        }
-    }
-    
-
+    //             // Update the total price
+    //             const totalPrice = parseFloat(totalPriceElement.textContent) + pricePerUnit;
+    //             totalPriceElement.textContent = totalPrice.toFixed(2);
+    //             console.log('Product added to cart successfully.');
+    //             // Optionally, you can update the UI to reflect the item being added to the cart
+    //         } else {
+    //             console.error('Failed to add product to cart.');
+    //         }
+    //     } catch (error) {
+    //         console.error('Error adding product to cart:', error);
+    //     }
+    // }
         // Event listener for decreasing quantity
     decreaseButtons.forEach(function(button, index) {
         button.addEventListener('click', function() {
             if (quantityValues[index].textContent > 1) {
                 // Calculate the price per unit
+                const quantityInput = document.getElementById('quantityInput');
                 const pricePerUnit = parseFloat(priceElements[index].textContent) / parseInt(quantityValues[index].textContent);
-
+                quantityInput.value=10;
                 // Decrement the quantity
                 quantityValues[index].textContent--;
                 quantityValues[index].value--;

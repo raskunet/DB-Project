@@ -16,11 +16,11 @@ block main_content
                 .item-details
                     h2= product.productName
                     p.price= (product.price*product.Quantity).toFixed(2)
-                    input(type="hidden" name="productId"  value=product.productID)
                     .quantity-controls
                       form(method='POST', action='http://localhost:3000/cart/updateQuantity')
                         input(type='hidden', name='productId', value=product.productID)
-                        button.quantity-btn.decrease-btn(type='submit') -
+                        input(type="hidden" name="quantity" id="quantityInput" value=product.Quantity)
+                        button.quantity-btn.decrease-btn(type='submit' onclick='decreaseButtons()') -
                         span.quantity-value= product.Quantity
                         button.quantity-btn.increase-btn(type='submit') +
                         button.remove-item-btn(type='submit') Remove
