@@ -8,7 +8,7 @@ router.get("/", async function (req, res) {
   try {
     // Query the database to fetch user data
     const pool = await sqlCon;
-    const id = 2;
+    const id = req.session.userID;
     const query = `SELECT firstName, lastName, emailAddress FROM Users WHERE userID = @id;`;
 
     // Query the database to fetch user data
@@ -32,7 +32,7 @@ router.post("/details", async function (req, res) {
     console.log(Fname);
 
     const pool = await sqlCon;
-    const id = 2;
+    const id = req.session.userID;
     const query = `
           UPDATE Users SET firstName = @Fname, lastName = @Lname, userPassword = @Npassword WHERE userID = @id;
       `;

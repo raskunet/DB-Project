@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
             var productsInput = document.getElementById("products-input");
                 var products = [];
                 products = JSON.parse(productsInput.value);
-                products[index].Quantity --;
+                products[index].Quantity++;
                 var updatedProductsJson = JSON.stringify(products);
                 productsInput.value = updatedProductsJson;
             quantityValues[index].textContent++;
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 var productsInput = document.getElementById("products-input");
                 var products = [];
                 products = JSON.parse(productsInput.value);
-                products[index].Quantity --;
+                products[index].Quantity--;
                 var updatedProductsJson = JSON.stringify(products);
                 productsInput.value = updatedProductsJson;
                 // Decrement the quantity

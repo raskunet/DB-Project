@@ -28,7 +28,7 @@ block admin_main_content
                                 p orderID : #{orderDat.orderID}
                                 p Ordered By  : #{orderDat.userID}
                                 p Date : #{orderDat.orderDate}
-                            a.order_detail_btn(href="/admin/order/getorder/"+orderDat.orderID) view details
+                            a.order_detail_btn(href="/admin/orders/getOrder/"+orderDat.orderID) view details
                 else 
                     p(style='padding:10px 10px;color:red;') Nothing to Show
                 

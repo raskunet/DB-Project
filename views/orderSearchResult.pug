@@ -1,0 +1,37 @@
+extends admin.pug
+
+append admin_css
+    link(rel="stylesheet", href="/stylesheets/orderSearchRes.css")
+
+block admin_main_content
+    section#searchorderResultContainer
+      h2(style="margin-left:40px;margin-top:5px")  Order Data
+      form.searched_order_form
+          .info_name.input_flex
+              .name_container
+                  label(for="orderName") Ordered By 
+                  br
+                  input#order_name(type="text", name="orderName" ,value=orderData.userName,readonly)
+          .info-misc.input_flex
+              .info_price 
+                  label(for="price") Total Price
+                  br
+                  input#order_price(type="number", name="price", step=".01",value=orderData.totalPrice,readonly ) 
+          .info_description.input_flex
+                .info_orderDate
+                    label(for="orderDate") OrderDate
+                    br
+                    input#orderDate(type="text",name="orderDate",value=orderData.orderDate,readonly)
+                .info_shipAddress
+                    label(for="shippingAddress") Shipping Address
+                    br
+                    input#shipAddr(type="text", name="shippingAddress",value=orderData.shippingAddress,readonly)
+          .info_OrderStatus.input_flex
+                .info_shipStatus
+                    label(for="shippingStatus") Shipping Status
+                    br
+                    input#shippingStat(type="text", name="shippingStat",value=orderData.shippingStatus,readonly)
+                .info_paymentStatus 
+                    label(for="paymentStatus")
+                    br
+                    inputpaymentStat(type="text", name="paymentStatus",value=orderData.paymentStatus,readonly)

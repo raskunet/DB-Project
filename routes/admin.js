@@ -45,6 +45,8 @@ router.get("/ordersManage", adminController.ordersManage);
 
 router.post("/orders/getOrder", adminController.getOrder);
 
+router.get("/orders/getOrder/:orderID", adminController.getOrderDetails);
+
 router.get("/ordersManage/searchOrders", adminController.searchOrders);
 
 

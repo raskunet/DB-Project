@@ -2,7 +2,8 @@
     drop database webData
     create database webData
     use webData;
-
+    SELECT * FROM Sys.Tables
+    SELECT * FROM Orders
 drop table Users
 create table Users(
     userID int NOT NULL IDENTITY (1,1),
@@ -66,17 +67,20 @@ CREATE TABLE Products (
         primary key(userID,productID)
     );
 
+    DROP TABLE Orders
+
     create table Orders(
         orderID int primary key IDENTITY (1,1),
         orderDate date not null,
         shippingStatus varchar(1) not null,  -- 
         paymentStatus varchar(1) not null, -- P U While U dont't process Order
         shippingAddress varchar(50) not null,
+        userID int NOT NULL FOREIGN KEY references Users(userID),
         -- Total cost is calculated at run time
     );
 
     -- Items ordered against this OrderID
-
+    DROP TABLE OrderDetails
     create table OrderDetails(
         orderID int foreign key references Orders(orderID),
         userID int foreign key references Users(userID),

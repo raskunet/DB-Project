@@ -366,3 +366,30 @@ exports.getOrder = asyncHandler(async function (req, res, next) {
   })
 });
 
+exports.getOrderDetails = asyncHandler(async function (req, res, next) {
+  let orderID = req.params.orderID;
+
+  sqlCon.then(async pool => {
+    let result = await pool
+      .request()
+      .input("orderID", msSQL.Int, orderID)
+      .query(
+        `
+          SELECT (U.firstName+' '+U.lastName) AS userName,O.orderID,CONVERT(varchar,O.orderDate,1) as orderDate,O.shippingAddress,O.shippingStatus,O.paymentStatus, SUM(P.price*OD.quantityOfProduct) AS totalPrice
+          FROM Orders O
+          JOIN Users U on U.userID=O.userID
+          JOIN OrderDetails OD on  OD.orderID=O.orderID
+          JOIN Products P on P.productID=OD.productID
+          GROUP BY O.orderID,O.orderDate,O.shippingAddress,O.shippingStatus,O.paymentStatus,O.userID,U.firstName,U.lastName
+          HAVING O.orderID=@orderID
+        `
+      );
+    
+    result = JSON.parse(JSON.stringify(result.recordset));
+    console.log(result[0]);
+    res.render("orderSearchResult", {
+      pageTitle: 'Admin | Order Search',
+      orderData:result[0],
+    })
+  })
+})

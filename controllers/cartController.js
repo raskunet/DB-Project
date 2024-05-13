@@ -32,12 +32,13 @@ exports.cartRender = async function (req, res, next) {
 exports.insertingValues = async function (req, res, next) {
     try {
         const userID = req.session.userID;
+        console.log(userID);
         await sqlCon.then(async pool => {
             let result = await pool
                 .request()
                 .input('userID',msSQL.Int,userID)
-                .input('fullname', msSQL.NVarChar(20), req.body.full_name)
-                .input('address', msSQL.NVarChar(25), req.body.add_ress)
+                .input('fullname', msSQL.NVarChar(100), req.body.full_name)
+                .input('address', msSQL.NVarChar(50), req.body.add_ress)
                 .input('city', msSQL.NVarChar(25), req.body.cit_y)
                 .query(
                     `INSERT INTO Orders(orderDate, shippingStatus, paymentStatus, shippingAddress, userID) 
@@ -50,20 +51,22 @@ exports.insertingValues = async function (req, res, next) {
         const productsArray = JSON.parse(productsData);
 
         // Now you can traverse through the products array
+        console.log(productsArray);
         productsArray.forEach(async product => {
             await sqlCon.then(async pool => {
                 let result = await pool
-                    .request()
-                    .input('productId', msSQL.Int, product.productID)
-                    .input('quantity', msSQL.Int, product.Quantity)
-                    // Add more input parameters as needed
-                    .query(
-                        `declare @oid int 
+                  .request()
+                  .input("productId", msSQL.Int, product.productID)
+                  .input("quantity", msSQL.Int, product.Quantity)
+                  .input("userID", msSQL.Int, userID)
+                  // Add more input parameters as needed
+                  .query(
+                    `declare @oid int 
                         set @oid = (select top 1 orderID from Orders order by orderID desc)
                         if(@quantity > 0)
-                        INSERT INTO OrderDetails VALUES (@oid,1,@productId, @quantity)
+                        INSERT INTO OrderDetails VALUES (@oid,@userID,@productId, @quantity)
                         delete from Cart`
-                    );
+                  );
             });
         });
         res.redirect('/home');

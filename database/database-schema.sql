@@ -7,5 +7,12 @@ use webData;
 -- select *from products
 
 SELECT * FROM Orders
+
+SELECT * FROM OrderDetails
+
+SELECT * FROM Cart
 --select *from products
-select *from Users
+select *from Users WHERE userID=4
+
+
+SELECT * FROM Products
