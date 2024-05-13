@@ -1,6 +1,34 @@
 
 const asyncHandler = require("express-async-handler");
 const { msSQL, sqlCon } = require("../db.config");
+const e = require("express");
+const { json } = require("body-parser");
+
+exports.authenticateAdmin = asyncHandler(async function (req, res, next) {
+  let userID = req.session.userID;
+  if (userID !== undefined) {
+    sqlCon.then(async pool => {
+      let result = await pool.request()
+        .input('userID',msSQL.Int,userID)
+        .query('SELECT * FROM Users WHERE userID=@userID')
+      result = JSON.parse(JSON.stringify(result.recordset));
+      if (result[0].userType === 1) {
+        next();
+      }
+      else {
+        res.send(
+          `
+          <h1> Unauthorized Access</h1>
+          `
+        ).status(403);
+      }
+    })
+  }
+  else {
+    res.redirect('/login');
+  }
+})
+
 
 exports.adminRender = asyncHandler(async function (req, res, next) {
     res.render("admin", {

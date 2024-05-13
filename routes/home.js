@@ -9,7 +9,8 @@ router.get("/", function (req, res, next) {
     "home",
     {
       pageTitle: "home",
-        user: req.session.userID,
+      user: req.session.userID,
+      isAdmin: req.session.isAdmin,
     },
     function (err, html) {
       if (err) console.log(err);

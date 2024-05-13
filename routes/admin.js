@@ -2,6 +2,10 @@ let express = require("express");
 let router = express.Router();
 
 const adminController = require("../controllers/adminController");
+const { sqlCon } = require("../db.config");
+const expressAsyncHandler = require("express-async-handler");
+
+router.get('/*', adminController.authenticateAdmin);
 
 router.get("/", adminController.adminRender);
 

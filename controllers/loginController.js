@@ -25,6 +25,9 @@ exports.loginUser = asyncHandler(async function (req, res, next) {
         req.session.regenerate(function () {
           req.session.userID = result[0].userID;
           req.session.success = "Authenticated user as " + result[0].userID;
+          if (result[0].userType === 1) {
+            req.session.isAdmin = true;
+          }
           req.session.save(function (err) {
             if (err) {
               console.log(err);

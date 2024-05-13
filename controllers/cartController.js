@@ -22,7 +22,12 @@ exports.cartRender = async function (req, res, next) {
         const categories = categoriesResult.recordset;
 
         // Render the shopProduct page and pass products and categories data to the template
-        res.render('cart', { products, categories });
+        res.render("cart", {
+          products,
+          categories,
+          user:req.session.userID,
+          isAdmin: req.session.isAdmin,
+        });
     } catch (error) {
         console.error("Error fetching products or categories:", error);
         // Handle errors appropriately

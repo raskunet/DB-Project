@@ -16,7 +16,11 @@ router.get("/", async function (req, res) {
     const userData = result.recordset;
 
     // Render the profile page and pass user data to the template
-    res.render("profile", { userData });
+    res.render("profile", {
+      userData,
+      user:req.session.userID,
+      isAdmin: req.session.isAdmin,
+    });
   } catch (error) {
     console.error("Error fetching user data:", error);
     // Handle errors appropriately

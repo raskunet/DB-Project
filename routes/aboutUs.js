@@ -5,6 +5,7 @@ router.get("/", function (req, res, next) {
     res.render("aboutUs", {
       pageTitle: "About Us",
       user: req.session.userID,
+      isAdmin: req.session.isAdmin,
     });
 })
 

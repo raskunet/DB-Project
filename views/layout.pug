@@ -27,12 +27,14 @@ body
                 a#loginLink(href='/login') Login
               li
                 a#signupLink(href='/signUp') SignUp
-            else
-              li
-                a#adminLink(href='/admin') Admin
+            else if user
               li
                 a#cartLink(href='/cart') Cart
               li
                 a#profileLink(href='/profile') Profile 
+            if isAdmin
+              li
+                a#adminLink(href='/admin') Admin
+            
                 
     block main_content
