@@ -1,0 +1,17 @@
+extends layout.pug 
+
+append css_files
+    link(rel="stylesheet", href="/stylesheets/shopProduct.css")
+
+append css_files
+    script(src="/javascripts/wishjava.js")
+
+block main_content
+    h1(style="color: white; text-align: center;") Wishlist
+    section#shop
+        each product in products
+            .card(data-category=product.categoryID) 
+                img(src=product.imagepath, alt='', style='width:100%')
+                h1.name= product.productName
+                p.price= `$${product.price}`
+                p.description= product.description

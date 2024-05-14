@@ -48,3 +48,20 @@ exports.addToCart = async function(req, res, next) {
         res.status(500).send('Internal Server Error');
     }
 };
+exports.addToWishlist = async function (req, res, next) {
+    try {
+        const userId = 1; // Fixed user ID
+        const productId = req.body.productId; // Retrieve productId from request body
+
+        const pool = await sqlCon;
+        await pool.request()
+            .input('userId', msSQL.Int, userId)
+            .input('productId', msSQL.Int, productId)
+            .query('INSERT INTO wishlist (userID, productID) VALUES (@userId, @productId)');
+
+        res.status(200).send('Product added to wishlist successfully.');
+    }catch (error) {
+        console.error("Error adding product to wishlist:", error);
+        res.status(500).send('Internal Server Error');
+    }
+};

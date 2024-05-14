@@ -12,6 +12,10 @@ SELECT * FROM OrderDetails
 
 SELECT * FROM Cart
 --select *from products
+
+
+select *from cart
+
 select *from Users WHERE userID=4
 
 
