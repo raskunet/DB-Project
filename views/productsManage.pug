@@ -1,0 +1,16 @@
+extends admin.pug
+
+append admin_css
+    link(rel="stylesheet", href="/stylesheets/productsManage.css")
+
+block admin_main_content
+    .manage_products    
+        h3 Manage Products 
+        .search_products.manage_products_container
+            h4 Search, update and delete products from Database
+            button
+                a(href="/admin/productsManage/searchProducts") Search Products`
+        .insert_products.manage_products_container
+            h4 Insert New Products in Database
+            button 
+                a(href="/admin/productsManage/insertProduct") Insert Product

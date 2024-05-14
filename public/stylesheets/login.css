@@ -19,7 +19,6 @@
 }
 
 body {
-   
     font-size: 62.5%;
     font-family:Arial, Helvetica, sans-serif;
     background-color: white;
@@ -75,8 +74,9 @@ body {
 
 .login-container {
     background-color: #e9eaeb;
-    width: var(--login-container-width);
-    height: var(--login-container-height);
+    display: table-cell;
+    width:var(--login-container-width);
+    height:var(--login-container-height);
     display: flex;
     flex-direction: column;
     align-content: space-around;
@@ -84,38 +84,6 @@ body {
     border-top-right-radius: var(--container-border-radius);
     border-bottom-right-radius: var(--container-border-radius);
 }
-
-.login-Header-text {
-    font-size: 1.25rem;
-    font-weight: bold;
-    width: var(--login-container-width);
-    height: 25%;
-}
-
-.form-section1 {
-    background-color: #ffffff;
-}
-
-.login-form {
-    flex: 2;
-    height: 75%;
-}
-
-.login-Form-container {
-    flex: 1;
-    height: 200px;
-    padding-top: 1rem;
-    padding-bottom: 2rem;
-    width: var(--login-container-width);
-    padding-left: 40px;
-    margin-bottom: 3rem;
-}
-
-.form-section-2,
-.login-Header-text {
-    background-color: #e9eaeb;
-}
-
 
 .login-Header-text {
     font-size: 1.25rem;

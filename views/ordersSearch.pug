@@ -1,0 +1,34 @@
+extends admin.pug
+
+append admin_css 
+    link(rel="stylesheet", href="/stylesheets/orderSearch.css")
+
+append admin_js 
+    script(src="/javascripts/getUser.js",defer)
+
+block admin_main_content
+    .search_orders
+        form.search_orders_form(method='POST' ,action="/admin/orders/getOrder")
+            .search-input-container
+                label(for="search_orders") 
+                    h4 Search orders By Id
+                input#search(type="search", name="search_orders", required, value="")
+                br
+                span#search_orders_input_err
+            span(style='display:inline-block')
+                button#search_submit_btn(type='submit') Search 
+
+        .search_orders_results
+            h3 orders
+            ul.search_results
+                if orderFound
+                    li.search_list_item
+                        .search_res
+                            .order_basic_info
+                                p orderID : #{orderDat.orderID}
+                                p Ordered By  : #{orderDat.userID}
+                                p Date : #{orderDat.orderDate}
+                            a.order_detail_btn(href="/admin/orders/getOrder/"+orderDat.orderID) view details
+                else 
+                    p(style='padding:10px 10px;color:red;') Nothing to Show
+                

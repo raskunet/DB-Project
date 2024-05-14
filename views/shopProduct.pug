@@ -6,6 +6,9 @@ append css_files
 append css_files
     script(src="/javascripts/shopjava.js")
 
+//- This is for test only. Structure to be changed in future
+
+
 block main_content
     section#shop
         #search-container
@@ -22,7 +25,7 @@ block main_content
                     option(value='low') Price Low to High
                     option(value='high') Price High to Low
         each product in products
-            .card(data-category=product.categoryID) 
+            .card(data-category=product.categoryID)
                 img(src=product.imagepath, alt='', style='width:100%')
                 h1.name= product.productName
                 p.price= `$${product.price}`

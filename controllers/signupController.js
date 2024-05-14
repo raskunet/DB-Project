@@ -5,8 +5,10 @@ const { msSQL, sqlCon } = require("../db.config");
 
 
 exports.signUpRender = asyncHandler(async function (req, res, next) {
-
-    res.status(200).render('signUp')
+    res.render('signUp', {
+        pageTitle: "Signup",
+        user: req.user,
+    })
 })
 
 

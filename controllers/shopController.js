@@ -22,7 +22,7 @@ exports.renderShopProduct = async function (req, res, next) {
         }
 
         // Render the shopProduct page and pass products and categories data to the template
-        res.render('shopProduct', { products, categories });
+        res.render('shopProduct', { products, categories, user: req.session.userID, });
     } catch (error) {
         console.error("Error fetching products or categories:", error);
         // Handle errors appropriately
@@ -31,7 +31,7 @@ exports.renderShopProduct = async function (req, res, next) {
 };
 exports.addToCart = async function(req, res, next) {
     try {
-        const userId = 1; // Fixed user ID
+        const userId = req.session.userID;
         const quantity = 1; // Fixed quantity
         const productId = req.body.productId; // Retrieve productId from request body
 

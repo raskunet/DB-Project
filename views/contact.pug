@@ -10,9 +10,9 @@ block main_content
         | Have questions or feedback? We&apos;d love to hear from you! Fill out the form below and we&apos;ll get back to you as soon as possible.
       form
         label(for='name') Name:
-        input#name(type='text', name='name', required='')
+        input#name(type='text', name='name', required='', autocomplete='on')
         label(for='email') Email:
-        input#email(type='email', name='email', required='')
+        input#email(type='email', name='email', required='', autocomplete='on')
         label(for='message') Message:
         textarea#message(name='message', required='')
         input(type='submit', value='Submit')

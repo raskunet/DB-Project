@@ -1,0 +1,34 @@
+extends admin.pug
+
+append admin_css 
+    link(rel="stylesheet", href="/stylesheets/productSearch.css")
+
+append admin_js 
+    script(src="/javascripts/getUser.js",defer)
+
+block admin_main_content
+    .search_products
+        form.search_products_form(method='POST' action="/admin/product/getProduct")
+            .search-input-container
+                label(for="search_products") 
+                    h4 Search products By Id
+                input#search(type="search", name="search_products", required, value="")
+                br
+                span#search_products_input_err
+            span(style='display:inline-block')
+                button#search_submit_btn(type='submit') Search
+
+        .search_products_results
+            h3 products
+            ul.search_results
+                if productFound
+                    li.search_list_item
+                        .search_res
+                            .product_basic_info
+                                p productID : #{productDat.productID}
+                                p Name : #{productDat.productName}
+                                p price : #{productDat.price}
+                            a.product_detail_btn(href="/admin/product/getProduct/"+productDat.productID) view details
+                else 
+                    p(style='padding:10px 10px;color:red;') Nothing to Show
+                

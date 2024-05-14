@@ -4,35 +4,46 @@ const { msSQL, sqlCon } = require("../db.config");
 
 
 exports.loginRender = asyncHandler(async function (req, res, next) {
-  // Assuming you have a login page template named "login" (e.g., login.pug)
-  res.status(200).render('login');
+  res.render("login", {
+        pageTitle: "Login",
+  });
 });
 
 
-// Function to authenticate user credentials
-exports.authenticateUser = asyncHandler(async function (req, res, next) {
-    const { email, password } = req.body;
-
+exports.loginUser = asyncHandler(async function (req, res, next) {
+  let userMail = req.body.email, userPassword = req.body.password;
+  sqlCon.then(async (pool) => {
     try {
-        // Query the database to check if the user exists and credentials match
-        const pool = await sqlCon;
-        const result = await pool.request()
-            .input('email', msSQL.NVarChar(50), email)
-            .input('password', msSQL.NVarChar(50), password)
-            .query(
-                `SELECT * FROM Users WHERE emailAddress = @email AND userPassword = @password`
-            );
-
-        // Check if user exists and credentials match
-        if (result.recordset.length > 0) {
-            // User authentication successful
-            res.status(200).send('Login successful');
-        } else {
-            // User authentication failed
-            res.status(401).send('Invalid email or password');
-        }
+      let result = await pool
+        .request()
+        .input("userMail", msSQL.NVarChar(40), userMail)
+        .input("userPwd",msSQL.NVarChar(30),userPassword)
+        .query("SELECT * FROM Users WHERE emailAddress=@userMail AND userPassword=@userPwd");
+     
+      if (result.recordset.length > 0) {
+        result = JSON.parse(JSON.stringify(result.recordset));
+        req.session.regenerate(function () {
+          req.session.userID = result[0].userID;
+          req.session.success = "Authenticated user as " + result[0].userID;
+          if (result[0].userType === 1) {
+            req.session.isAdmin = true;
+          }
+          req.session.save(function (err) {
+            if (err) {
+              console.log(err);
+              return err;
+            }
+            setTimeout(() => {
+              res.redirect("/");
+            }, 2000);
+          });
+        });
+      }
+      else {
+        res.send("<h1>User not Exists<h1>").status(404)
+      }
     } catch (err) {
-        console.error("Database error:", err);
-        res.status(500).send('Internal Server Error');
+      console.log(err);
     }
-});
+  });
+})

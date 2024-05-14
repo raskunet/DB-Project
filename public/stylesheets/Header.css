@@ -3,9 +3,10 @@ body {
     padding: 0;
 }
 
-.header {
-    font-family: 'Roboto Condensed', sans-serif;
-    padding-top: 20px;
+
+ .header {
+    font-family: 'Roboto Condensed', sans-serif;;
+    padding-bottom: 20px;
     display: flex;
     background-color: white;
     justify-content: space-around;

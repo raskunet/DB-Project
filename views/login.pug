@@ -1,40 +1,45 @@
-extends layout
+extends layout.pug
 
 append css_files
     link(rel="stylesheet", href="/stylesheets/login.css")
 
 block main_content
     section.main-container
-        .image-container
-            .milky-way-image-container
-                img.milky-way-image(src='/images/signUp/Images/milky-way-large.png', alt='Image of Milky Way Galaxy')
-            .odin-logo-container
-                p(style='font-size: 70px; color:white') Mega Shopper
-        .login-container
-            .login-Header-text(style='padding: 10px 20px;')
-                form.login-form(novalidate='', autocomplete='off', method='POST', action='http://localhost:3000/login/authenticateUser')
-                    section.form-section1
-                        br
-                        h1(style='font-size: 1.5rem;padding-top: 5px;padding-left: 2rem;') Sign In
-                        br
-                        .login-Form-container
-                            .form-contact-info-container.input-flex
-                                .email-container
-                                    label(for='mail') EMAIL
-                                    br
-                                    input#mail(type='email', name='email', required='', autocomplete='new')
-                                    br
-                                    span#mail-input-err  
-                            .form-password-container.input-flex
-                                .password-container
-                                    label(for='user-passwd') PASSWORD
-                                    br
-                                    input#user-passwd(type='password', name='password', required='', autocomplete='new-password')
-                                    br
-                                    span#password-input-err
-                    section.form-section-2
-                        .login-submit-container(style='padding-top: 5px;')
-                            button.form-submit-btn(type='submit') Log In
-                        p(style='padding-left:40px; font-size: 1.15rem;')
-                            | Don't have an account?
-                            a(href='#') Sign Up
+      .image-container
+        .milky-way-image-container
+          img.milky-way-image(src='/images/signUp/Images/milky-way-large.png', alt='Image of Mily Way Galaxy')
+        .odin-logo-container
+          p(style='font-size: 70px; color:white') Mega Shopper
+      .login-container
+        .login-Header-text(style='padding: 10px 20px;')
+            h1(style="display:inline;") Login Now to get Started
+        form.login-form(novalidate='', autocomplete='off' method='POST' action='/login/authenticateUser')
+          section.form-section1
+            h1(style='font-size: 1.5rem;padding-top: 5px;padding-left: 2rem;') Let's do this!
+            .login-Form-container
+              .form-contact-info-container.input-flex
+                .email-container
+                  label(for='mail') EMAIL
+                  br
+                  input#mail(type='email', name='email', required='', autocomplete='new')
+                  br
+                  span#mail-input-err  
+              .form-password-conainer.input-flex
+                .password-container
+                  label(for='user-passwd') PASSWORD
+                  br
+                  input#user-passwd(type='password', name='password', required='', autocomplete='new-password')
+                  br
+                  span#password-input-err
+                .cfm-password-container
+                  label(for='cfm_passwd') CONFIRM PASSWORD
+                  br
+                  input#cfm_passwd(type='password', name='cfm_password', required='')
+                  br
+                  span#cfm-password-input-err
+          section.form-section-2
+            .login-submit-container(style='padding-top: 5px;')
+              button.form-submit-btn(type='submit') Log In
+            p(style='padding-left:40px; font-size: 1.15rem;')
+              | Don't have an account?
+              a(href='#') Sign In

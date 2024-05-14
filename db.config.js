@@ -8,7 +8,6 @@ const config = {
     server: "localhost", // You can use 'localhost\\instance' to connect to named instance
     database: "webData",
     trustServerCertificate: true,
-
 };
 
 

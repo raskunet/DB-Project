@@ -1,0 +1,12 @@
+extends admin.pug
+
+append admin_css
+    link(rel="stylesheet", href="/stylesheets/ordersManage.css")
+
+block admin_main_content
+    .manage_orders    
+        h3 Manage Orders 
+        .search_orders.manage_orders_container
+            h4 Search orders from Database
+            button
+                a(href="/admin/ordersManage/searchOrders") Search Orders

@@ -1,70 +1,58 @@
-extends layout
+extends layout.pug
+
+append css_files
+    link(rel="stylesheet", href="/stylesheets/signup.css")
 
 block main_content
-  doctype html
-  html(lang='en')
-    head
-      meta(charset='UTF-8')
-      meta(name='viewport', content='width=device-width, initial-scale=1.0')
-      title Night Journey | SignUp
-      link(href='https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap', rel='stylesheet')
-      link(rel='stylesheet', href="/stylesheets/signup.css")
-      script(src='/javascripts/signup.js', defer='')
-    body
-      #header
-      main.main-container
-        .image-container
-          .milky-way-image-container
-            img.milky-way-image(src='/images/SignUp/Images/milky-way-large.png', alt='Image of Milky Way Galaxy')
-          .odin-logo-container
-            p(style='font-size: 70px; color:white') Mega Shopper
-        .signUp-container
-          .signUp-Header-text
-            p(style='padding-bottom: 5rem;padding-top: 7rem; ')
-              | Hello!!
-              br
-              span(style='font-size:30px') Sign Up Now
-              br
-              |  to get started.
-              br
-              br
-          form.signUp-form(novalidate='', autocomplete='off', method='POST', action='http://localhost:3000/signUp/signUpUser' )
-            section.form-section1
-              h1(style='font-size: 1.5rem;padding-top: 1rem;padding-left: 5rem;') Let's do this!
-              .signUp-Form-container
-                .form-name-container.input-flex
-                  .first-name-container
-                    label(for='fname') FIRST NAME
-                    br
-                    input#fname(type='text', name='first_name',required='')
-                  .last-name-container
-                    label(for='lname') LAST NAME
-                    br
-                    input#lname(type='text', name='last_name')
-                .form-contact-info-container.input-flex
-                  .email-container
-                    label(for='mail') EMAIL
-                    br
-                    input#mail(type='email', name='email', required='', autocomplete='new')
-                    br
-                    span#mail-input-err  
+    main.main-container
+      .image-container
+        .milky-way-image-container
+          img.milky-way-image(src='/images/SignUp/Images/milky-way-large.png', alt='Image of Mily Way Galaxy')
+        .odin-logo-container
+          // <img class="odin-logo" src="Logo.jpg" alt="The Odin Project Logo">
+          p(style='font-size: 70px; color:white') Mega Shopper
+      .signUp-container
+        .signUp-Header-text(style="padding:10px 20px;")
+            span(style='font-size:30px') Sign Up Now
+            br
+            |  to get started.
+        form.signUp-form(novalidate='', autocomplete='off' method='POST' action='/signUp/signUpUser' )
+          section.form-section1
+            h1(style='font-size: 1.5rem;padding-top: 5px;padding-left: 2rem;') Let's do this!
+            .signUp-Form-container
+              .form-name-container.input-flex
+                .first-name-container
+                  label(for='fname') FIRST NAME
+                  br
+                  input#fname(type='text', name='first_name',required='')
+                .last-name-container
+                  label(for='lname') LAST NAME
+                  br
+                  input#lname(type='text', name='last_name')
+              .form-contact-info-container.input-flex
+                .email-container
+                  label(for='mail') EMAIL
+                  br
+                  input#mail(type='email', name='email', required='', autocomplete='new')
+                  br
+                  span#mail-input-err  
 
-                .form-password-conainer.input-flex
-                  .password-container
-                    label(for='user-pwd') PASSWORD
-                    br
-                    input#user-pwd(type='password', name='password', required='', autocomplete='new-password')
-                    br
-                    span#password-input-err
-                  .cfm-password-container
-                    label(for='cfm-pwd') CONFIRM PASSWORD
-                    br
-                    input#cfm-pwd(type='password', name='confirm_password', required='')
-                    br
-                    span#cfm-password-input-err
-            section.form-section-2
-              .signUp-submit-container(style='padding-top: 4rem;text-align: center;')
-                button.form-submit-btn(type='submit') Create Account
-              p(style='padding-top: 3rem;text-align: center; font-size: 1.15rem;')
-                | Already have an account? 
-                a(href='#') Log In
+              .form-password-conainer.input-flex
+                .password-container
+                  label(for='user-pwd') PASSWORD
+                  br
+                  input#user-pwd(type='password', name='password', required='', autocomplete='new-password')
+                  br
+                  span#password-input-err
+                .cfm-password-container
+                  label(for='cfm-pwd') CONFIRM PASSWORD
+                  br
+                  input#cfm-pwd(type='password', name='confirm_password', required='')
+                  br
+                  span#cfm-password-input-err
+          section.form-section-2
+            .signUp-submit-container(style='padding-top: 2rem;')
+              button.form-submit-btn(type='submit') Create Account
+            p(style='padding:20px 40px; font-size: 1.15rem;')
+              | Already have an account? 
+              a(href='#') Log In

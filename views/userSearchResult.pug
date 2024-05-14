@@ -1,0 +1,53 @@
+extends admin.pug
+
+append admin_css
+    link(rel="stylesheet", href="/stylesheets/userSearchRes.css")
+
+append admin_js
+    script(src="/javascripts/userSearchRes.js" defer) 
+
+block admin_main_content
+    if userDelete 
+      p(style='color:red;padding-left:40px;') User Deleted Successfully
+    else if userFound
+      section#searchUserResultContainer
+        h2(style="margin-left:40px;margin-top:5px")  User Data
+        form.searched_user_form(method="POST")
+            .info_name.input_flex
+                .first_name_container
+                    label(for="firstName") First Name
+                    br
+                    input#first_name(type="text", name="firstName" value=userData.firstName)
+                .last_name_container 
+                    label(for="lastName") Last Name
+                    br
+                    input#last_name(type="text", name="lastName" value=userData.lastName)
+                    
+            .info-misc.input_flex
+                .info_contact
+                    .email_container
+                        label(for="email") Email
+                        br
+                        input#mail(type="email", name="email" value=userData.emailAddress)
+                .info_usertype
+                    .userType_container
+                        label(for="userType") UserType
+                        br
+                        input#userTypeInput(type="number", name="userType", min="1" ,max="3" value=userData.userType)
+            .info_password.input_flex
+                .password_container
+                    label(for="password") Password
+                    br
+                    input#userPassword(type="password", name="password" value=userData.userPassword)
+                    p
+                      input#show_password(type="checkbox", name="showPassword" value="Show Password") 
+                      |  Show Password
+            section.form_seaction_2 
+                .updateUser_submit_container 
+                    button.updateUser(type="submit", name="update_user", formaction="/admin/user/getUser/"+userData.userID+"/updateUser") Update User 
+                    span#insertUser_error
+                .deleteUser_submit_container 
+                    button.deleteUser(type="submit", name="delete_user", formaction="/admin/user/getUser/"+userData.userID+"/deleteUser") Delete User 
+                    span#insertUser_error
+        if updateUser
+          p(style='color:red;padding-left:40px;') User Updated Successfully

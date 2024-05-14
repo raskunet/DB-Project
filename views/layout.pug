@@ -1,50 +1,42 @@
-html(lang="en")
-  head
+doctype html
+head
     meta(charset="UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     link(href='https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap', rel='stylesheet')
     link(href='https://fonts.googleapis.com/css2?family=Madimi+One&family=Roboto+Condensed:wght@700&display=swap', rel='stylesheet')
     title=pageTitle
     block css_files
-      link(rel="stylesheet", href="./stylesheets/Header.css")
+        link(rel="stylesheet", href="./stylesheets/Header.css")
     block js_files
-  body
+body
     header.header
       .logo-container
         img(src='/images/header/Designer.jpeg', alt='')
       .mid
-        ul.navbar
-          li
-            a#homeLink(href='/home') Home
-          li
-            a#shopLink(href='/home/shop') Shop
-          li
-            a#aboutLink(href='/home/aboutUs') About Us
-          li
-            a#contactLink(href='/home/contact') Contact
-          li
-            a#loginLink(href='/home/login') Login
-          li
-            a#signupLink(href='/home/signUp') SignUp
-          li
-            a#adminLink(href='/home/admin') Admin
-          li
-            a#cartLink(href='/home/cart') Cart
-          li
-            a#cartLink(href='/wishlist') Wishlist
+          ul.navbar
+            li
+              a#homeLink(href='/home') Home
+            li
+              a#shopLink(href='/shop') Shop
+            li
+              a#aboutLink(href='/aboutUs') About Us
+            li
+              a#contactLink(href='/contact') Contact
+            if !user
+              li
+                a#loginLink(href='/login') Login
+              li
+                a#signupLink(href='/signUp') SignUp
+            else if user
+              li
+                a#cartLink(href='/cart') Cart
+              li
+                a#profileLink(href='/profile') Profile 
+              li
+                a#cartLink(href='/wishlist') Wishlist
+            if isAdmin
+              li
+                a#adminLink(href='/admin') Admin
             
-  block main_content
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                
+    block main_content
