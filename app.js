@@ -13,6 +13,8 @@ let aboutUsRouter = require('./routes/aboutUs');
 let contactRouter = require("./routes/contact");
 let adminRouter = require("./routes/admin");
 let shopRouter = require("./routes/shop");
+let wishRouter = require("./routes/wishlist");
+
 var app = express();
 
 // view engine setup
@@ -35,6 +37,10 @@ app.use('/aboutUs', aboutUsRouter);
 app.use('/contact', contactRouter);
 app.use("/admin", adminRouter);
 app.use("/shop", shopRouter);
+app.use("/wishlist", wishRouter);
+
+
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

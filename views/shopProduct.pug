@@ -39,3 +39,6 @@ block main_content
                 form(method='POST', action='http://localhost:3000/shop/addToCart')
                     input(type='hidden', name='productId', value=product.productID)
                     button(type='submit') Add to Cart
+                form(method='POST', action='http://localhost:3000/shop/addTowishlist')
+                    input(type='hidden', name='productId', value=product.productID)
+                    button(type='submit') Add to Whishlist
