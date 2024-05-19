@@ -8,8 +8,8 @@ This is a semester project for course Database Management System
 Follow these steps to run this locally
 1. Clone the repo and cd to it
 ```
-git clone 
-cd /repo_name
+   git clone 
+   cd /repo_name
 ``` 
 2. Install [NodeJS](https://nodejs.org/en).
 3. Install [git](https://git-scm.com/).
